@@ -2,7 +2,10 @@
 <div id="footer">
   <?php // Removed <script type="text/javascript">startdoing();</script> ?>
   <div id="hspan">
-    <div class="icp-info"><?php _e('备案号预留区域'); ?> (ICP License placeholder)</div>
+        <div class="copyright-info">
+            该主题基于 <a href="http://www.staraudio.net/" target="_blank" rel="nofollow external">星之音</a> 的主题通过AI二次开发后形成，by Typecho
+        </div>
+        <div class="icp-info">备案号预留区域</div>
   </div>
 </div>
 

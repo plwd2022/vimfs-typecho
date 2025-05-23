@@ -937,3 +937,30 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus {
     box-shadow: 0 0 0 2px #007bff; // Example custom focus
 }
 */
+
+/* Footer Content Styling */
+#footer #hspan {
+    /* hspan was previously used for copyright, ensure it allows block elements */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0; /* Add some padding to hspan if needed */
+}
+.copyright-info {
+    margin-bottom: 5px; /* Space between copyright and ICP */
+    font-size: 0.9em;
+    color: #ccc; /* Slightly dimmer than main footer text if #footer color is #fff */
+}
+.copyright-info a {
+    color: #ddd; /* Link color within copyright */
+    text-decoration: underline;
+}
+.copyright-info a:hover {
+    color: #fff;
+}
+.icp-info { /* Already styled in a previous step, ensure it still looks good */
+    font-size: 0.9em;
+    color: #ccc; /* Consistent with copyright-info */
+    margin-top: 5px; /* Ensure space if copyright is above */
+}
