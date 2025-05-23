@@ -1001,3 +1001,104 @@ select:focus,
     margin: 5px; 
     z-index: 1001; 
 }
+
+/* User Status Links in Header */
+.user-status-links {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between links */
+    font-size: var(--font-size-small);
+    margin-left: 15px; /* Space from branding */
+    /* margin-right: auto; Push search and date to the right if this is not desired */
+}
+.user-status-links a {
+    color: var(--text-color-base);
+    text-decoration: none;
+    padding: 5px 8px;
+    border-radius: var(--border-radius-base);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.user-status-links a:hover {
+    color: var(--text-color-link-hover);
+    background-color: var(--bg-color-subtle);
+}
+
+/* Mobile Navigation Styles */
+.mobile-menu-toggle {
+    display: none; /* Hidden by default, shown in media query */
+    background: none;
+    border: 1px solid var(--text-color-on-dark); /* Use a color that shows on nav bg */
+    border-radius: var(--border-radius-base);
+    padding: 8px;
+    cursor: pointer;
+}
+.mobile-menu-toggle .icon-bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background-color: var(--text-color-on-dark); /* Color for hamburger bars */
+    margin: 4px 0;
+    transition: background-color 0.3s;
+}
+.mobile-menu-toggle:hover .icon-bar {
+    background-color: var(--primary-color); /* Example hover */
+}
+
+.main-navigation {
+    display: flex; /* For desktop: links in a row */
+    align-items: center;
+}
+.main-navigation a { /* Existing styles for #nav a should apply, refine if needed */
+    color: var(--text-color-on-dark);
+    padding: 0.5rem 1rem; /* Or var(--space-xs) var(--space-sm) */
+    display: inline-block;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.main-navigation a:hover,
+.main-navigation a.current,
+.main-navigation a[aria-current="page"] { /* Ensure current page styling */
+    background-color: var(--bg-color-nav-hover); /* Or var(--primary-color) */
+    color: #fff; /* Ensure text is readable */
+}
+
+/* Mobile Menu Breakpoint (example: 768px) */
+@media (max-width: 768px) {
+    #nav .container { /* Make nav container flex for alignment */
+        display: flex;
+        justify-content: space-between; /* Button left, (optional logo/title center/right) */
+        align-items: center;
+        position: relative; /* For positioning the dropdown */
+    }
+    .mobile-menu-toggle {
+        display: block; /* Show the hamburger button */
+        order: -1; /* Optional: if you want it to appear first visually */
+    }
+    .main-navigation {
+        display: none; /* Hide desktop nav links container by default */
+        width: 100%;
+        position: absolute; 
+        top: 100%; /* Position below the #nav bar */
+        left: 0;
+        background-color: var(--bg-color-nav); /* Or a different color for mobile dropdown */
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        z-index: 999; /* Ensure it's on top */
+        padding: 10px 0; /* Padding for the dropdown area */
+    }
+    .main-navigation.nav-open {
+        display: flex; /* Show the nav links */
+        flex-direction: column; /* Stack links vertically */
+        align-items: flex-start; /* Align links to the left */
+    }
+    .main-navigation a {
+        display: block; /* Make links full width for easier tapping */
+        width: 100%;
+        padding: 10px 15px; /* Adjust padding for vertical links */
+        border-bottom: 1px solid var(--bg-color-nav-hover); /* Separator for links */
+    }
+    .main-navigation a:last-child {
+        border-bottom: none;
+    }
+}
+
+[end of NewTheme/style.css]

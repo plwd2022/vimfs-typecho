@@ -5,7 +5,9 @@
         <div class="copyright-info">
             该主题基于 <a href="http://www.staraudio.net/" target="_blank" rel="nofollow external">星之音</a> 的主题通过AI二次开发后形成，by Typecho
         </div>
-        <div class="icp-info">备案号预留区域</div>
+        <div class="icp-info">
+            <a href="https://beian.miit.gov.cn/" target="_blank" rel="nofollow external">京ICP备 2010012111-2号</a>
+        </div>
   </div>
 </div>
 

@@ -52,6 +52,16 @@
         <?php // Optionally, add site title/description if not using a logo, or alongside ?>
     </div>
 
+        <div class="user-status-links"> <?php // New wrapper for these links ?>
+            <?php if($this->user->hasLogin()): ?>
+                <span class="user-admin-link"><a role="button" accesskey="4" href="<?php $this->options->adminUrl(); ?>">进入 <?php $this->user->screenName(); ?> 的后台</a></span>
+                <span class="user-logout-link"><a role="button" accesskey="4" href="<?php $this->options->logoutUrl(); ?>">退出</a></span>
+            <?php else: ?>
+                <span class="user-login-link"><a role="button" accesskey="4" href="<?php $this->options->adminUrl('login.php'); ?>">登录</a></span>
+                <span class="user-register-link"><a role="button" accesskey="4" href="<?php $this->options->adminUrl('register.php'); ?>">注册</a></span>
+            <?php endif; ?>
+        </div>
+
     <div class="header-search"> <?php // New wrapper for search in header ?>
         <form id="search" method="post" action="<?php $this->options->siteUrl(); ?>" role="search">
             <label for="s-header" class="sr-only">搜索关键字</label>
@@ -65,26 +75,34 @@
     </div>
 </div> <?php // End of #header .container ?>
 
-  <div id="nav" class="container"> <!-- Added container class for nav as well -->
-      <a <?php if($this->is('index')): ?>class="current" aria-current="page"<?php endif; ?> href="<?php $this->options->siteUrl(); ?>">首页</a>
-    <?php $this->widget('Widget_Metas_Category_List')->to($pages); ?>
-    <?php while($pages->next()): ?>
-      <a <?php if($this->is('category',$pages->slug)): ?>class="current" aria-current="page"<?php endif; ?> href="<?php $pages->permalink(); ?>"><?php $pages->name(); ?></a>
-    <?php endwhile; ?>
-    <?php $this->widget('Widget_Contents_Page_List')->to($pages); ?>
-    <?php while($pages->next()): ?>
-      <a <?php if($this->is('page',$pages->slug)): ?>class="current" aria-current="page"<?php endif; ?> href="<?php $pages->permalink(); ?>"><?php $pages->title(); ?></a>
-    <?php endwhile; ?>
-  </div>
+  <div id="nav" class="container">
+        <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-expanded="false" aria-controls="main-navigation" aria-label="主导航菜单"> <?php // Hardcode Chinese for aria-label ?>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <div id="main-navigation" class="main-navigation"> <?php // Wrapper for nav links ?>
+            <a <?php if($this->is('index')): ?>class="current" aria-current="page"<?php endif; ?> href="<?php $this->options->siteUrl(); ?>">首页</a> <?php // Hardcode Chinese ?>
+            <?php $this->widget('Widget_Metas_Category_List')->to($categories); ?>
+            <?php while($categories->next()): ?>
+            <a <?php if($this->is('category',$categories->slug)): ?>class="current" aria-current="page"<?php endif; ?> href="<?php $categories->permalink(); ?>"><?php $categories->name(); ?></a>
+            <?php endwhile; ?>
+            <?php $this->widget('Widget_Contents_Page_List')->to($pages); ?>
+            <?php while($pages->next()): ?>
+            <a <?php if($this->is('page',$pages->slug)): ?>class="current" aria-current="page"<?php endif; ?> href="<?php $pages->permalink(); ?>"><?php $pages->title(); ?></a>
+            <?php endwhile; ?>
+        </div>
+    </div>
 
 <div id="hotkey-help-modal" class="hotkey-modal" style="display:none;" role="dialog" aria-labelledby="hotkey-modal-title" aria-hidden="true">
     <div class="hotkey-modal-content">
         <h3 id="hotkey-modal-title">键盘快捷键</h3>
         <p>导航操作：</p>
         <ul>
+            <li>Alt+1：聚焦到搜索框</li>
             <li>Alt+2：循环切换分类/板块</li>
             <li>Alt+3：循环切换文章/内容/链接</li>
-            <li>Alt+1：聚焦到搜索框</li>
+            <li>Alt+4：用户操作 (登录/注册/后台/退出)</li> <?php // Ensure this line is present and correct ?>
         </ul>
         <p>播放器控制：</p>
         <ul>
