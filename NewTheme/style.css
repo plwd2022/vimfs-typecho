@@ -1,0 +1,939 @@
+/* Basic Reset */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { line-height: 1.6; font-family: sans-serif; /* Placeholder font */ }
+img, picture, video, canvas, svg { display: block; max-width: 100%; }
+input, button, textarea, select { font: inherit; }
+a { text-decoration: none; color: inherit; }
+ul, ol { list-style: none; }
+
+/* Basic Layout Structure */
+.container {
+    max-width: 1200px; /* Max width of the content area */
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f4f4f4; /* Light grey background */
+    color: #333; /* Default text color */
+}
+
+#header { /* Matches ID in header.php (though it was <div style="headbar">, better to use ID) */
+    background-color: #fff; /* White header background */
+    padding: 1rem 0;
+    border-bottom: 1px solid #ddd;
+}
+
+/* We need to wrap the main content and sidebar to use flex effectively */
+.site-content {
+    display: flex;
+    flex-wrap: wrap; /* Allow sidebar to wrap on smaller screens */
+    flex-grow: 1; /* Make sure content area grows to fill available space */
+    width: 100%;
+}
+
+#main { /* Matches ID in Typecho structure */
+    flex: 3; /* Main content takes 3 parts of the space */
+    padding: 20px;
+    background-color: #fff;
+    margin: 10px; /* Some spacing */
+}
+
+#rightbar { /* Matches ID for sidebar */
+    flex: 1; /* Sidebar takes 1 part of the space */
+    padding: 20px;
+    background-color: #f9f9f9;
+    margin: 10px; /* Some spacing */
+}
+
+/* Basic Footer Styling */
+#footer { /* Matches ID in footer.php */
+    background-color: #333; /* Dark footer */
+    color: #fff; /* Light text for footer */
+    padding: 20px 0;
+    text-align: center;
+}
+
+.icp-info {
+    font-size: 0.9em;
+    margin-top: 10px;
+}
+
+/* Basic Nav Styling (placeholder) */
+#nav {
+    background-color: #444; /* Darker nav background */
+    padding: 0.5rem 0;
+}
+#nav a {
+    color: #fff;
+    padding: 0.5rem 1rem;
+    display: inline-block;
+}
+#nav a:hover,
+#nav a.current {
+    background-color: #555;
+}
+
+/* Responsive considerations for sidebar */
+@media (max-width: 768px) {
+    .site-content {
+        flex-direction: column;
+    }
+    #main, #rightbar {
+        width: 100%;
+        margin: 10px 0; /* Adjust margin for stacked layout */
+    }
+}
+
+/* Typography & Colors (Placeholders) */
+body {
+    font-family: 'Arial', sans-serif; /* Basic sans-serif font stack */
+    font-size: 16px;
+    line-height: 1.6;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Georgia', serif; /* Basic serif font stack for headings */
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    color: #222; /* Darker color for headings */
+}
+a {
+    color: #007bff; /* Standard link color */
+}
+a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* Refined Header Styles */
+#header {
+    padding-top: 10px; /* Adjust padding */
+    padding-bottom: 10px;
+}
+#header .navbar-brand img {
+    max-height: 50px; /* Control logo size */
+    width: auto;
+}
+#header .site-title a { /* If you have a text title */
+    text-decoration: none;
+    font-size: 2em;
+    font-weight: bold;
+    color: #333;
+}
+#header .site-description { /* If you have a site description */
+    font-size: 1em;
+    color: #777;
+}
+
+/* Refined Navigation Styles */
+#nav {
+    border-bottom: 1px solid #ccc; /* Add a subtle border */
+    border-top: 1px solid #ccc; /* Add a subtle border */
+}
+#nav a {
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions */
+}
+#nav a:hover,
+#nav a.current {
+    background-color: #007bff; /* Use the primary link color for hover/current */
+    color: #fff; /* White text on hover/current */
+}
+
+/* Search Form Styling (assuming structure from original header.php) */
+#search {
+    display: flex; /* Align input and button nicely */
+    margin-top: 10px; /* Space from nav or other elements */
+}
+#search input.text {
+    border: 1px solid #ccc;
+    padding: 8px;
+    flex-grow: 1; /* Input takes available space */
+    border-radius: 3px 0 0 3px; /* Rounded corners on the left */
+}
+#search button.submit {
+    background-color: #007bff;
+    color: #fff;
+    border: 1px solid #007bff;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 0 3px 3px 0; /* Rounded corners on the right */
+    transition: background-color 0.3s ease;
+}
+#search button.submit:hover {
+    background-color: #0056b3;
+}
+
+/* General Content Area Styling */
+#main {
+    border-radius: 3px; /* Slightly rounded corners for content boxes */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* Subtle shadow */
+}
+#rightbar {
+    border-radius: 3px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Typography Refinements */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif; /* More modern font stack */
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Lucida Grande', 'Helvetica Neue', Arial, sans-serif; /* Consistent with body or slightly different */
+    font-weight: bold;
+}
+h1 { font-size: 2.2em; }
+h2 { font-size: 1.8em; }
+h3 { font-size: 1.5em; }
+
+/* Link styling */
+a {
+    transition: color 0.2s ease-in-out;
+}
+
+/* Homepage Specific Styles */
+
+/* Site Statistics */
+.site-stats {
+    background-color: #e9ecef; /* Light background for stats */
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 3px;
+    text-align: center;
+    font-size: 0.95em;
+}
+.site-stats .eeyinfo { /* Class from original theme */
+    border: none; /* Override old border if any */
+    background-color: transparent; /* Override old background if any */
+    padding: 0;
+    margin: 0;
+}
+
+/* Category Sections on Homepage */
+.category-section {
+    margin-bottom: 30px;
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 3px;
+    background-color: #fff; /* Ensure it stands out if #main has a different bg */
+}
+
+.category-section .widget-title { /* From original theme, might need adjustment */
+    font-size: 1.5em; /* Adjust size */
+    margin-top: 0; /* Remove top margin if it's the first element */
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #007bff; /* Use primary color for border */
+    color: #333;
+}
+.category-section .widget-title a {
+    text-decoration: none;
+    color: inherit;
+}
+.category-section .widget-title a:hover {
+    color: #0056b3;
+}
+
+/* Post List within Category Sections */
+.widget-index-list { /* From original theme */
+    list-style: none;
+    padding-left: 0; /* Remove default padding if it's a ul */
+}
+.widget-index-list li {
+    padding: 8px 0;
+    border-bottom: 1px dotted #ddd; /* Subtle separator for list items */
+    display: flex; /* Align title and date */
+    justify-content: space-between;
+    align-items: center;
+}
+.widget-index-list li:last-child {
+    border-bottom: none;
+}
+.widget-index-list li a {
+    font-size: 1.1em;
+    color: #333; /* Darker color for post titles */
+}
+.widget-index-list li a:hover {
+    color: #007bff; /* Primary color on hover */
+}
+.widget-index-list li span { /* Date */
+    font-size: 0.9em;
+    color: #777;
+}
+
+/* Friendly Links Section (if shown on index.php) */
+.widget-lists { /* From original theme, used for friendly links */
+    list-style: none;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #eee;
+    border-radius: 3px;
+    background-color: #fff;
+}
+.widget-lists .widget-title {
+    font-size: 1.5em;
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #007bff;
+    color: #333;
+}
+.widget-lists li {
+    margin-bottom: 8px;
+}
+.widget-lists li a {
+    color: #333;
+}
+.widget-lists li a:hover {
+    color: #007bff;
+}
+
+/* Post and Page Entry Styles */
+.post-entry, .page-entry {
+    padding: 20px;
+    margin-bottom: 30px;
+    background-color: #fff; /* White background for content */
+    border: 1px solid #eee;
+    border-radius: 3px;
+}
+
+.entry-header {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.entry-title {
+    font-size: 2em; /* Larger title for posts/pages */
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #333;
+    font-weight: bold;
+}
+
+.entry-meta {
+    font-size: 0.9em;
+    color: #777;
+    margin-bottom: 10px;
+}
+.entry-meta span {
+    margin-right: 10px;
+}
+.entry-meta a {
+    color: #555;
+}
+.entry-meta a:hover {
+    color: #007bff;
+}
+
+.entry-content {
+    line-height: 1.7; /* Improved readability */
+    font-size: 1.1em; /* Slightly larger content font */
+}
+.entry-content p {
+    margin-bottom: 1.5em;
+}
+.entry-content h1, .entry-content h2, .entry-content h3, 
+.entry-content h4, .entry-content h5, .entry-content h6 {
+    margin-top: 1.5em;
+    margin-bottom: 0.8em;
+    font-weight: bold;
+}
+.entry-content img {
+    max-width: 100%;
+    height: auto;
+    margin: 15px 0;
+    border-radius: 3px;
+}
+.entry-content blockquote {
+    margin: 15px 0;
+    padding: 10px 20px;
+    background-color: #f9f9f9;
+    border-left: 5px solid #007bff;
+    font-style: italic;
+}
+.entry-content ul, .entry-content ol {
+    margin-bottom: 1.5em;
+    padding-left: 2em; /* Indent lists */
+}
+.entry-content ul { list-style: disc; }
+.entry-content ol { list-style: decimal; }
+.entry-content li { margin-bottom: 0.5em; }
+
+.entry-footer {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #f0f0f0;
+    font-size: 0.9em;
+    color: #555;
+}
+.post-tags {
+    margin-bottom: 10px;
+}
+.post-tags a {
+    display: inline-block;
+    background-color: #e9ecef;
+    padding: 3px 8px;
+    margin-right: 5px;
+    border-radius: 3px;
+    font-size: 0.9em;
+    color: #333;
+}
+.post-tags a:hover {
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+}
+
+.post-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+.post-navigation .nav-previous, 
+.post-navigation .nav-next {
+    flex-basis: 48%; /* Each takes roughly half */
+}
+.post-navigation a {
+    color: #007bff;
+}
+.post-navigation a:hover {
+    text-decoration: underline;
+}
+
+/* Related Posts Section */
+.related-posts {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f9f9f9; /* Slightly different background */
+    border: 1px solid #eee;
+    border-radius: 3px;
+}
+.related-posts .section-title { /* Assuming a common class for section titles */
+    font-size: 1.6em;
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    color: #333;
+}
+.related-posts .widget-list { /* Copied from homepage styles, ensure consistency */
+    list-style: none;
+    padding-left: 0;
+}
+.related-posts .widget-list li {
+    padding: 8px 0;
+    border-bottom: 1px dotted #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.related-posts .widget-list li:last-child {
+    border-bottom: none;
+}
+.related-posts .widget-list li a {
+    font-size: 1.1em;
+    color: #333;
+}
+.related-posts .widget-list li a:hover {
+    color: #007bff;
+}
+.related-posts .widget-list li span { /* Date */
+    font-size: 0.9em;
+    color: #777;
+}
+
+/* Comments Section Styles */
+#comments-section { /* Assuming you might wrap comments.php content in this */
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 3px;
+}
+
+/* Titles within comments section (e.g., "X Comments", "Add Comment") */
+#comments-section .widget-title {
+    font-size: 1.6em;
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    color: #333;
+}
+
+/* Comment List */
+.comment-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+.comment-list ol { /* For threaded comments */
+    list-style: none;
+    padding-left: 20px; /* Indent replies */
+}
+.comment-list li {
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 3px;
+    background-color: #f9f9f9;
+}
+.comment-list li.comment-level-odd { /* From original theme */
+    background-color: #fff; /* Slightly different for odd levels if desired */
+}
+.comment-list li.comment-level-even { /* From original theme */
+    background-color: #f8f8f8;
+}
+.comment-list li.comment-by-author { /* From original theme */
+    background-color: #e6f7ff; /* Highlight author's comments */
+    border-color: #b3e0ff;
+}
+
+.comment-author {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+.comment-author .avatar { /* Typecho uses get_avatar() which outputs an img with class 'avatar' */
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.comment-author cite { /* Author name */
+    font-weight: bold;
+    font-style: normal;
+    color: #333;
+}
+.comment-meta {
+    font-size: 0.85em;
+    color: #777;
+    margin-bottom: 10px;
+}
+.comment-meta a {
+    color: #777;
+}
+.comment-meta a:hover {
+    color: #007bff;
+}
+
+.comment-content {
+    line-height: 1.6;
+    margin-bottom: 10px;
+    font-size: 1em;
+}
+.comment-content p {
+    margin-bottom: 10px;
+}
+
+.comment-reply a {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 3px;
+    font-size: 0.9em;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+.comment-reply a:hover {
+    background-color: #0056b3;
+}
+
+/* Comment Pagination (Typecho uses .page-navigator) */
+.page-navigator {
+    list-style: none;
+    margin: 20px 0;
+    padding: 0;
+    text-align: center;
+}
+.page-navigator li {
+    display: inline-block;
+    margin: 0 4px;
+}
+.page-navigator a {
+    display: inline-block;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    color: #007bff;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.page-navigator a:hover,
+.page-navigator .current a {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+/* Comment Form */
+.respond {
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #f8f8f8;
+    border: 1px solid #e0e0e0;
+    border-radius: 3px;
+}
+#comment-form p {
+    margin-bottom: 15px;
+}
+#comment-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+#comment-form input[type="text"],
+#comment-form input[type="email"],
+#comment-form input[type="url"],
+#comment-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 1em;
+    box-sizing: border-box; /* Ensure padding doesn't expand width */
+}
+#comment-form input[type="text"]:focus,
+#comment-form input[type="email"]:focus,
+#comment-form input[type="url"]:focus,
+#comment-form textarea:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+}
+#comment-form .required:after { /* From original theme */
+    content:" *";
+    color:#C00; /* Red asterisk for required fields */
+}
+#comment-form .submit {
+    background-color: #007bff;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 3px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+#comment-form .submit:hover {
+    background-color: #0056b3;
+}
+.cancel-comment-reply { /* Link to cancel a reply */
+    margin-bottom: 10px;
+    font-size: 0.9em;
+}
+.cancel-comment-reply a {
+    color: #777;
+}
+.cancel-comment-reply a:hover {
+    color: #d9534f; /* A reddish color for cancel */
+}
+
+/* Notification message in comment form */
+#comment-form span[role="notify"] {
+    display: block;
+    padding: 10px;
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    border-radius: 3px;
+    font-size: 0.9em;
+    color: #495057;
+    margin-bottom: 15px;
+}
+
+/* Sidebar Styles */
+#rightbar {
+    /* Basic #rightbar styles are already in place (flex:1, padding, bg-color) */
+    /* Add any additional overall sidebar styling here if needed */
+}
+
+.sidebar-inner {
+    /* Container for all widgets if further styling is needed */
+}
+
+.widget {
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #fff; /* Widget background */
+    border: 1px solid #e0e0e0;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+.widget:last-child {
+    margin-bottom: 0;
+}
+
+.widget .widget-title {
+    font-size: 1.3em; /* Slightly smaller than post/page titles */
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    color: #333;
+}
+
+.widget .widget-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.widget .widget-list li {
+    padding: 6px 0;
+    border-bottom: 1px dotted #eee;
+    font-size: 0.95em;
+}
+.widget .widget-list li:last-child {
+    border-bottom: none;
+}
+.widget .widget-list li a {
+    color: #333;
+}
+.widget .widget-list li a:hover {
+    color: #007bff;
+}
+.widget .widget-list li .post-date { /* For recent posts if date is shown */
+    font-size: 0.9em;
+    color: #777;
+    margin-left: 5px;
+}
+
+/* Sidebar Search Widget */
+.widget_search form {
+    display: flex;
+}
+.widget_search input.text {
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px 0 0 3px;
+    font-size: 0.95em;
+}
+.widget_search button.submit {
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: #fff;
+    border: 1px solid #007bff;
+    border-left: none; /* Avoid double border with input */
+    border-radius: 0 3px 3px 0;
+    cursor: pointer;
+    font-size: 0.95em;
+    transition: background-color 0.3s ease;
+}
+.widget_search button.submit:hover {
+    background-color: #0056b3;
+}
+.sr-only { /* Ensure .sr-only is defined if not already (it was in original style.css) */
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}
+
+/* Archive Page Styles */
+.archive-page {
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 3px;
+}
+
+.archive-header {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.archive-title {
+    font-size: 1.8em; /* Consistent with other section titles */
+    margin-top: 0;
+    margin-bottom: 0; /* No bottom margin as header has padding */
+    color: #333;
+}
+
+.post-list { /* General post list container, can be reused */
+    margin-bottom: 20px;
+}
+
+.post-list-item { /* Individual item in an archive list */
+    padding: 15px 0;
+    border-bottom: 1px dotted #ddd;
+}
+.post-list-item:last-child {
+    border-bottom: none;
+}
+
+.post-list-item .item-header {
+    margin-bottom: 10px;
+}
+
+.post-list-item .item-title {
+    font-size: 1.4em;
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+.post-list-item .item-title a {
+    color: #333;
+    text-decoration: none;
+}
+.post-list-item .item-title a:hover {
+    color: #007bff;
+}
+
+.post-list-item .item-meta {
+    font-size: 0.85em;
+    color: #777;
+    margin-bottom: 10px;
+}
+.post-list-item .item-meta span {
+    margin-right: 8px;
+}
+.post-list-item .item-meta a {
+    color: #555;
+}
+.post-list-item .item-meta a:hover {
+    color: #007bff;
+}
+
+.post-list-item .item-excerpt {
+    font-size: 1em;
+    line-height: 1.6;
+    color: #555;
+}
+.post-list-item .item-excerpt p { /* Excerpt might be wrapped in p */
+    margin-bottom: 0;
+}
+
+.no-results {
+    padding: 20px;
+    text-align: center;
+    font-size: 1.2em;
+    color: #777;
+}
+
+/* Pagination styles (.page-navigator) are already defined from comments.php styling */
+/* Ensure they look good in this context too. */
+
+/* Header Search Form Styles */
+#header .container { /* Modified from task, as #header already has .container */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+}
+
+.site-branding {
+    /* flex-grow: 1; */ /* Allow it to take space, adjust as needed */
+}
+
+.header-search {
+    margin-left: auto; /* Pushes to the right if #header .container is flex */
+    display: flex; 
+    align-items: center; 
+}
+
+/* Re-using existing #search styling by ensuring the form in header-search keeps id="search" */
+/* If #search input.text or #search button.submit needs header-specific tweaks, target them like: */
+/* .header-search #search input.text { ... } */
+/* .header-search #search button.submit { ... } */
+
+/* Ensure the input ID specific styles if any, or rely on .text class */
+#s-header { /* ID of the input field within header search form */
+    /* width: 200px; */ /* Example: fixed width */
+}
+
+/* Header Date Display */
+.header-date-display {
+    font-size: 0.85em;
+    color: #555;
+    text-align: right; 
+    padding: 5px 0;
+    /* Adjust margin as needed, e.g., if it's part of the flex layout or wraps */
+    /* margin-left: 15px; */ /* Example if it's next to search */
+}
+
+/* Hotkey Help Modal */
+.hotkey-modal {
+    position: fixed; /* Or absolute, depending on desired behavior */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    z-index: 1000; /* Ensure it's on top */
+    width: 80%;
+    max-width: 500px;
+    border-radius: 5px;
+}
+.hotkey-modal-content h3 {
+    margin-top: 0;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+.hotkey-modal-content ul {
+    list-style: disc;
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
+.hotkey-modal-content li {
+    margin-bottom: 5px;
+}
+#close-hotkey-modal {
+    display: block;
+    margin-top: 15px;
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+#close-hotkey-modal:hover {
+    background-color: #0056b3;
+}
+
+/* Enhanced Focus Styles for Accessibility */
+a:focus,
+button:focus,
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus,
+[tabindex]:focus { /* Catch elements made focusable with tabindex */
+    outline: 2px solid #0056b3; /* A slightly darker blue than default links */
+    outline-offset: 2px; /* Adds a little space between element and outline */
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* Optional: a subtle glow */
+}
+
+/* Specific adjustment for buttons if the default outline is too tight */
+button:focus {
+    /* outline-offset: 1px; /* Example if needed */
+}
+
+/* Remove default outline if you are providing a very clear custom one via box-shadow or border */
+/* However, it's often better to enhance the default outline as above. */
+/* Example of replacing (use with caution): */
+/*
+a, button, input, textarea, select {
+    outline: none; 
+}
+a:focus, button:focus, input:focus, textarea:focus, select:focus {
+    box-shadow: 0 0 0 2px #007bff; // Example custom focus
+}
+*/
