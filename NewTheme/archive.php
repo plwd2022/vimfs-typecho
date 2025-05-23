@@ -37,7 +37,7 @@
                     </div>
                 <?php endif; ?>
 
-                <?php $this->pageNav('&laquo; Previous', 'Next &raquo;'); ?>
+                <?php $this->pageNav(_t('&laquo; Previous'), _t('Next &raquo;')); ?>
             </div><?php // .archive-page ?>
         </div><?php // #main ?>
 <?php $this->need('sidebar.php'); ?>

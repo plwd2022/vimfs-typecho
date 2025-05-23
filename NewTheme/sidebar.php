@@ -63,8 +63,8 @@
                       // For now, replicating the hardcoded links from the original index.php as an example.
                       // Users would need to edit this PHP directly or we'd need a new theme option for these.
                 ?>
-                <li><a href="http://www.staraudio.net/" target="_blank">星之音</a></li>
-                <li><a href="http://www.typecho.org" target="_blank">Typecho</a></li>
+                 <li><a href="http://www.staraudio.net/" target="_blank"><?php _e('星之音'); ?></a></li>
+                 <li><a href="http://www.typecho.org" target="_blank"><?php _e('Typecho'); ?></a></li>
                 <?php // Add more links here if needed ?>
             </ul>
         </aside>

@@ -61,7 +61,7 @@
     </div>
     
     <div class="header-date-display">
-         <?php echo date('Y年m月d日'); ?> <?php $weekarray=array("日","一","二","三","四","五","六"); echo "星期".$weekarray[date("w")]; ?>
+         <?php echo date('Y年m月d日'); ?> <?php $weekarray=array(_t("日"),_t("一"),_t("二"),_t("三"),_t("四"),_t("五"),_t("六")); echo _t("星期").$weekarray[date("w")]; ?>
     </div>
 </div> <?php // End of #header .container ?>
 

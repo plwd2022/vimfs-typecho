@@ -35,7 +35,7 @@
     <?php if (!empty($this->options->sidebarBlock) && in_array('ShowOther', $this->options->sidebarBlock)): ?>
     <ul class="widget-lists">
       <h2 class="widget-title" accesskey="2" tabindex="0"><?php _e('友情链接'); ?></h2>
-      <li><a href="http://www.staraudio.net/" target="_blank">星之音</a></li>
+      <li><a href="http://www.staraudio.net/" target="_blank"><?php _e('星之音'); ?></a></li>
           
 	
 	</ul>

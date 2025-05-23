@@ -1,24 +1,7 @@
 // NewTheme/js/main.js
-// Contains main theme JavaScript: initial focus logic and Hotkey Help Modal control.
+// Contains main theme JavaScript: Hotkey Help Modal control.
 
-function startdoing() {
-    // Initial page focus logic:
-    // Focus search on homepage, or main content title on other pages.
-    <?php if($this->is('index')): ?>
-    try { 
-        var sHeader = document.getElementById('s-header');
-        if (sHeader) sHeader.focus();
-    } catch(e) { console.error("Error focusing on #s-header:", e); }
-    <?php else: ?>
-    try {
-        var entryTitle = document.querySelector('.entry-title');
-        if (entryTitle) {
-          entryTitle.setAttribute('tabindex', -1);
-          entryTitle.focus();
-        }
-    } catch(e) { console.error("Error focusing on .entry-title:", e); }
-    <?php endif; ?>
-    
+function setupHotkeyModal() {
     // Hotkey Help Modal functionality
     var hotkeyHelpTrigger = document.getElementById('hotkey-help-trigger');
     var hotkeyHelpModal = document.getElementById('hotkey-help-modal');
@@ -49,11 +32,11 @@ function startdoing() {
             }
         });
     }
-} // end of startdoing()
+} // end of setupHotkeyModal()
 
-// Initialize the startdoing function once the DOM is ready.
+// Initialize the modal setup once the DOM is ready.
 if (document.readyState === 'loading') { 
-    document.addEventListener('DOMContentLoaded', startdoing);
+    document.addEventListener('DOMContentLoaded', setupHotkeyModal);
 } else {
-    startdoing(); // Call it directly if already loaded
+    setupHotkeyModal(); // Call it directly if already loaded
 }
