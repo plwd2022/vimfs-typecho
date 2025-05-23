@@ -1,7 +1,56 @@
+/* NewTheme/style.css */
+:root {
+    --primary-color: #007bff;
+    --primary-color-hover: #0056b3; /* Darker shade for hovers */
+    --secondary-color: #6c757d; /* Example: a grey for secondary elements */
+
+    --text-color-base: #333333;
+    --text-color-muted: #777777;
+    --text-color-headings: #222222;
+    --text-color-on-dark: #ffffff;
+    --text-color-link: var(--primary-color);
+    --text-color-link-hover: var(--primary-color-hover);
+
+    --bg-color-body: #f4f4f4;
+    --bg-color-content: #ffffff;
+    --bg-color-header: #ffffff;
+    --bg-color-footer: #333333;
+    --bg-color-nav: #444444;
+    --bg-color-nav-hover: #555555;
+    --bg-color-button: var(--primary-color);
+    --bg-color-button-hover: var(--primary-color-hover);
+    --bg-color-subtle: #e9ecef; /* For things like site-stats, some blockquotes */
+    --bg-color-widget: #ffffff; /* Widgets already use bg-color-content, but could be separate */
+    
+    --border-color-light: #eeeeee;
+    --border-color-medium: #dddddd;
+    --border-color-dark: #cccccc; /* For inputs, etc. */
+
+    --font-family-sans: 'Helvetica Neue', Arial, sans-serif;
+    --font-family-serif: 'Georgia', serif; /* Optional for headings or specific text */
+    --font-family-base: var(--font-family-sans);
+    --font-family-headings: var(--font-family-sans); /* Keep headings sans-serif for modern look, or switch to serif */
+
+    --font-size-base: 16px;
+    --font-size-small: 0.9em;
+    --font-size-large: 1.1em;
+    --line-height-base: 1.6;
+    --line-height-content: 1.7;
+
+    --border-radius-base: 3px;
+    --box-shadow-base: 0 1px 3px rgba(0,0,0,0.1);
+}
+
 /* Basic Reset */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { line-height: 1.6; font-family: sans-serif; /* Placeholder font */ }
+body { 
+    line-height: var(--line-height-base); 
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-base);
+    background-color: var(--bg-color-body);
+    color: var(--text-color-base);
+}
 img, picture, video, canvas, svg { display: block; max-width: 100%; }
 input, button, textarea, select { font: inherit; }
 a { text-decoration: none; color: inherit; }
@@ -16,18 +65,18 @@ ul, ol { list-style: none; }
     padding-right: 15px;
 }
 
-body {
+body { /* This is a duplicate body selector, the one in Basic Reset is now primary */
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: #f4f4f4; /* Light grey background */
-    color: #333; /* Default text color */
+    /* background-color: #f4f4f4; */ /* Now in :root and Basic Reset body */
+    /* color: #333; */ /* Now in :root and Basic Reset body */
 }
 
-#header { /* Matches ID in header.php (though it was <div style="headbar">, better to use ID) */
-    background-color: #fff; /* White header background */
+#header {
+    background-color: var(--bg-color-header);
     padding: 1rem 0;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--border-color-medium);
 }
 
 /* We need to wrap the main content and sidebar to use flex effectively */
@@ -38,46 +87,46 @@ body {
     width: 100%;
 }
 
-#main { /* Matches ID in Typecho structure */
+#main { 
     flex: 3; /* Main content takes 3 parts of the space */
     padding: 20px;
-    background-color: #fff;
+    background-color: var(--bg-color-content);
     margin: 10px; /* Some spacing */
 }
 
-#rightbar { /* Matches ID for sidebar */
+#rightbar { 
     flex: 1; /* Sidebar takes 1 part of the space */
     padding: 20px;
-    background-color: #f9f9f9;
+    background-color: var(--bg-color-subtle); /* Changed from #f9f9f9 to subtle for consistency */
     margin: 10px; /* Some spacing */
 }
 
 /* Basic Footer Styling */
-#footer { /* Matches ID in footer.php */
-    background-color: #333; /* Dark footer */
-    color: #fff; /* Light text for footer */
+#footer { 
+    background-color: var(--bg-color-footer);
+    color: var(--text-color-on-dark);
     padding: 20px 0;
     text-align: center;
 }
 
 .icp-info {
-    font-size: 0.9em;
+    font-size: var(--font-size-small);
     margin-top: 10px;
 }
 
 /* Basic Nav Styling (placeholder) */
 #nav {
-    background-color: #444; /* Darker nav background */
+    background-color: var(--bg-color-nav);
     padding: 0.5rem 0;
 }
 #nav a {
-    color: #fff;
+    color: var(--text-color-on-dark);
     padding: 0.5rem 1rem;
     display: inline-block;
 }
 #nav a:hover,
 #nav a.current {
-    background-color: #555;
+    background-color: var(--bg-color-nav-hover);
 }
 
 /* Responsive considerations for sidebar */
@@ -91,23 +140,18 @@ body {
     }
 }
 
-/* Typography & Colors (Placeholders) */
-body {
-    font-family: 'Arial', sans-serif; /* Basic sans-serif font stack */
-    font-size: 16px;
-    line-height: 1.6;
-}
+/* Typography & Colors (Placeholders) - Body font is now in :root and Basic Reset body */
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Georgia', serif; /* Basic serif font stack for headings */
+    font-family: var(--font-family-headings);
     margin-top: 1.5em;
     margin-bottom: 0.5em;
-    color: #222; /* Darker color for headings */
+    color: var(--text-color-headings);
 }
 a {
-    color: #007bff; /* Standard link color */
+    color: var(--text-color-link);
 }
 a:hover {
-    color: #0056b3;
+    color: var(--text-color-link-hover);
     text-decoration: underline;
 }
 
@@ -115,6 +159,7 @@ a:hover {
 #header {
     padding-top: 10px; /* Adjust padding */
     padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color-medium); /* Added this, was in initial #header */
 }
 #header .navbar-brand img {
     max-height: 50px; /* Control logo size */
@@ -124,67 +169,65 @@ a:hover {
     text-decoration: none;
     font-size: 2em;
     font-weight: bold;
-    color: #333;
+    color: var(--text-color-base);
 }
 #header .site-description { /* If you have a site description */
     font-size: 1em;
-    color: #777;
+    color: var(--text-color-muted);
 }
 
 /* Refined Navigation Styles */
 #nav {
-    border-bottom: 1px solid #ccc; /* Add a subtle border */
-    border-top: 1px solid #ccc; /* Add a subtle border */
+    border-bottom: 1px solid var(--border-color-dark);
+    border-top: 1px solid var(--border-color-dark);
 }
 #nav a {
     transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions */
 }
 #nav a:hover,
 #nav a.current {
-    background-color: #007bff; /* Use the primary link color for hover/current */
-    color: #fff; /* White text on hover/current */
+    background-color: var(--primary-color); /* Use the primary link color for hover/current */
+    color: var(--text-color-on-dark); /* White text on hover/current */
 }
 
 /* Search Form Styling (assuming structure from original header.php) */
-#search {
+#search { /* This ID is used in header and sidebar widget */
     display: flex; /* Align input and button nicely */
-    margin-top: 10px; /* Space from nav or other elements */
+    /* margin-top: 10px; */ /* Removed, specific spacing should be handled by parent */
 }
 #search input.text {
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color-dark);
     padding: 8px;
     flex-grow: 1; /* Input takes available space */
-    border-radius: 3px 0 0 3px; /* Rounded corners on the left */
+    border-radius: var(--border-radius-base) 0 0 var(--border-radius-base);
 }
 #search button.submit {
-    background-color: #007bff;
-    color: #fff;
-    border: 1px solid #007bff;
+    background-color: var(--bg-color-button);
+    color: var(--text-color-on-dark);
+    border: 1px solid var(--primary-color);
     padding: 8px 15px;
     cursor: pointer;
-    border-radius: 0 3px 3px 0; /* Rounded corners on the right */
+    border-radius: 0 var(--border-radius-base) var(--border-radius-base) 0;
     transition: background-color 0.3s ease;
 }
 #search button.submit:hover {
-    background-color: #0056b3;
+    background-color: var(--bg-color-button-hover);
 }
 
 /* General Content Area Styling */
 #main {
-    border-radius: 3px; /* Slightly rounded corners for content boxes */
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* Subtle shadow */
+    border-radius: var(--border-radius-base);
+    box-shadow: var(--box-shadow-base);
 }
 #rightbar {
-    border-radius: 3px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    border-radius: var(--border-radius-base);
+    box-shadow: var(--box-shadow-base);
+    background-color: var(--bg-color-widget); /* Using widget bg color */
 }
 
-/* Typography Refinements */
-body {
-    font-family: 'Helvetica Neue', Arial, sans-serif; /* More modern font stack */
-}
+/* Typography Refinements - Body font handled by Basic Reset */
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Lucida Grande', 'Helvetica Neue', Arial, sans-serif; /* Consistent with body or slightly different */
+    /* font-family already set */
     font-weight: bold;
 }
 h1 { font-size: 2.2em; }
@@ -197,19 +240,18 @@ a {
 }
 
 /* Homepage Specific Styles */
-
 /* Site Statistics */
 .site-stats {
-    background-color: #e9ecef; /* Light background for stats */
+    background-color: var(--bg-color-subtle);
     padding: 15px;
     margin-bottom: 20px;
-    border-radius: 3px;
+    border-radius: var(--border-radius-base);
     text-align: center;
-    font-size: 0.95em;
+    font-size: var(--font-size-small);
 }
-.site-stats .eeyinfo { /* Class from original theme */
-    border: none; /* Override old border if any */
-    background-color: transparent; /* Override old background if any */
+.site-stats .eeyinfo { 
+    border: none; 
+    background-color: transparent; 
     padding: 0;
     margin: 0;
 }
@@ -218,36 +260,36 @@ a {
 .category-section {
     margin-bottom: 30px;
     padding: 15px;
-    border: 1px solid #eee;
-    border-radius: 3px;
-    background-color: #fff; /* Ensure it stands out if #main has a different bg */
+    border: 1px solid var(--border-color-light);
+    border-radius: var(--border-radius-base);
+    background-color: var(--bg-color-content);
 }
 
-.category-section .widget-title { /* From original theme, might need adjustment */
-    font-size: 1.5em; /* Adjust size */
-    margin-top: 0; /* Remove top margin if it's the first element */
+.category-section .widget-title { 
+    font-size: 1.5em; 
+    margin-top: 0; 
     margin-bottom: 15px;
     padding-bottom: 10px;
-    border-bottom: 2px solid #007bff; /* Use primary color for border */
-    color: #333;
+    border-bottom: 2px solid var(--primary-color);
+    color: var(--text-color-base);
 }
 .category-section .widget-title a {
     text-decoration: none;
     color: inherit;
 }
 .category-section .widget-title a:hover {
-    color: #0056b3;
+    color: var(--primary-color-hover);
 }
 
 /* Post List within Category Sections */
-.widget-index-list { /* From original theme */
+.widget-index-list { 
     list-style: none;
-    padding-left: 0; /* Remove default padding if it's a ul */
+    padding-left: 0; 
 }
 .widget-index-list li {
     padding: 8px 0;
-    border-bottom: 1px dotted #ddd; /* Subtle separator for list items */
-    display: flex; /* Align title and date */
+    border-bottom: 1px dotted var(--border-color-medium);
+    display: flex; 
     justify-content: space-between;
     align-items: center;
 }
@@ -255,85 +297,85 @@ a {
     border-bottom: none;
 }
 .widget-index-list li a {
-    font-size: 1.1em;
-    color: #333; /* Darker color for post titles */
+    font-size: var(--font-size-large);
+    color: var(--text-color-base);
 }
 .widget-index-list li a:hover {
-    color: #007bff; /* Primary color on hover */
+    color: var(--text-color-link-hover);
 }
 .widget-index-list li span { /* Date */
-    font-size: 0.9em;
-    color: #777;
+    font-size: var(--font-size-small);
+    color: var(--text-color-muted);
 }
 
 /* Friendly Links Section (if shown on index.php) */
-.widget-lists { /* From original theme, used for friendly links */
+.widget-lists { 
     list-style: none;
     padding: 15px;
     margin-bottom: 20px;
-    border: 1px solid #eee;
-    border-radius: 3px;
-    background-color: #fff;
+    border: 1px solid var(--border-color-light);
+    border-radius: var(--border-radius-base);
+    background-color: var(--bg-color-content);
 }
 .widget-lists .widget-title {
     font-size: 1.5em;
     margin-top: 0;
     margin-bottom: 15px;
     padding-bottom: 10px;
-    border-bottom: 2px solid #007bff;
-    color: #333;
+    border-bottom: 2px solid var(--primary-color);
+    color: var(--text-color-base);
 }
 .widget-lists li {
     margin-bottom: 8px;
 }
 .widget-lists li a {
-    color: #333;
+    color: var(--text-color-base);
 }
 .widget-lists li a:hover {
-    color: #007bff;
+    color: var(--text-color-link-hover);
 }
 
 /* Post and Page Entry Styles */
 .post-entry, .page-entry {
     padding: 20px;
     margin-bottom: 30px;
-    background-color: #fff; /* White background for content */
-    border: 1px solid #eee;
-    border-radius: 3px;
+    background-color: var(--bg-color-content);
+    border: 1px solid var(--border-color-light);
+    border-radius: var(--border-radius-base);
 }
 
 .entry-header {
     margin-bottom: 20px;
     padding-bottom: 15px;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid var(--border-color-light); /* Was #f0f0f0 */
 }
 
 .entry-title {
-    font-size: 2em; /* Larger title for posts/pages */
+    font-size: 2em; 
     margin-top: 0;
     margin-bottom: 10px;
-    color: #333;
+    color: var(--text-color-headings);
     font-weight: bold;
 }
 
 .entry-meta {
-    font-size: 0.9em;
-    color: #777;
+    font-size: var(--font-size-small);
+    color: var(--text-color-muted);
     margin-bottom: 10px;
 }
 .entry-meta span {
     margin-right: 10px;
 }
 .entry-meta a {
-    color: #555;
+    color: var(--text-color-muted); /* Darker than default link for subtlety */
 }
 .entry-meta a:hover {
-    color: #007bff;
+    color: var(--text-color-link-hover);
 }
 
 .entry-content {
-    line-height: 1.7; /* Improved readability */
-    font-size: 1.1em; /* Slightly larger content font */
+    line-height: var(--line-height-content);
+    font-size: var(--font-size-large);
 }
 .entry-content p {
     margin-bottom: 1.5em;
@@ -348,18 +390,18 @@ a {
     max-width: 100%;
     height: auto;
     margin: 15px 0;
-    border-radius: 3px;
+    border-radius: var(--border-radius-base);
 }
 .entry-content blockquote {
     margin: 15px 0;
     padding: 10px 20px;
-    background-color: #f9f9f9;
-    border-left: 5px solid #007bff;
+    background-color: var(--bg-color-subtle);
+    border-left: 5px solid var(--primary-color);
     font-style: italic;
 }
 .entry-content ul, .entry-content ol {
     margin-bottom: 1.5em;
-    padding-left: 2em; /* Indent lists */
+    padding-left: 2em; 
 }
 .entry-content ul { list-style: disc; }
 .entry-content ol { list-style: decimal; }
@@ -368,25 +410,25 @@ a {
 .entry-footer {
     margin-top: 20px;
     padding-top: 15px;
-    border-top: 1px solid #f0f0f0;
-    font-size: 0.9em;
-    color: #555;
+    border-top: 1px solid var(--border-color-light); /* Was #f0f0f0 */
+    font-size: var(--font-size-small);
+    color: var(--text-color-muted);
 }
 .post-tags {
     margin-bottom: 10px;
 }
 .post-tags a {
     display: inline-block;
-    background-color: #e9ecef;
+    background-color: var(--bg-color-subtle);
     padding: 3px 8px;
     margin-right: 5px;
-    border-radius: 3px;
-    font-size: 0.9em;
-    color: #333;
+    border-radius: var(--border-radius-base);
+    font-size: var(--font-size-small);
+    color: var(--text-color-base);
 }
 .post-tags a:hover {
-    background-color: #007bff;
-    color: #fff;
+    background-color: var(--primary-color);
+    color: var(--text-color-on-dark);
     text-decoration: none;
 }
 
@@ -397,10 +439,10 @@ a {
 }
 .post-navigation .nav-previous, 
 .post-navigation .nav-next {
-    flex-basis: 48%; /* Each takes roughly half */
+    flex-basis: 48%; 
 }
 .post-navigation a {
-    color: #007bff;
+    color: var(--text-color-link);
 }
 .post-navigation a:hover {
     text-decoration: underline;
@@ -410,25 +452,25 @@ a {
 .related-posts {
     margin-top: 30px;
     padding: 20px;
-    background-color: #f9f9f9; /* Slightly different background */
-    border: 1px solid #eee;
-    border-radius: 3px;
+    background-color: var(--bg-color-subtle); /* Was #f9f9f9 */
+    border: 1px solid var(--border-color-light);
+    border-radius: var(--border-radius-base);
 }
-.related-posts .section-title { /* Assuming a common class for section titles */
+.related-posts .section-title { 
     font-size: 1.6em;
     margin-top: 0;
     margin-bottom: 15px;
     padding-bottom: 10px;
-    border-bottom: 1px solid #ddd;
-    color: #333;
+    border-bottom: 1px solid var(--border-color-medium);
+    color: var(--text-color-base);
 }
-.related-posts .widget-list { /* Copied from homepage styles, ensure consistency */
+.related-posts .widget-list { 
     list-style: none;
     padding-left: 0;
 }
 .related-posts .widget-list li {
     padding: 8px 0;
-    border-bottom: 1px dotted #ddd;
+    border-bottom: 1px dotted var(--border-color-medium);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -437,34 +479,33 @@ a {
     border-bottom: none;
 }
 .related-posts .widget-list li a {
-    font-size: 1.1em;
-    color: #333;
+    font-size: var(--font-size-large);
+    color: var(--text-color-base);
 }
 .related-posts .widget-list li a:hover {
-    color: #007bff;
+    color: var(--text-color-link-hover);
 }
 .related-posts .widget-list li span { /* Date */
-    font-size: 0.9em;
-    color: #777;
+    font-size: var(--font-size-small);
+    color: var(--text-color-muted);
 }
 
 /* Comments Section Styles */
-#comments-section { /* Assuming you might wrap comments.php content in this */
+#comments-section { 
     margin-top: 30px;
     padding: 20px;
-    background-color: #fff;
-    border: 1px solid #eee;
-    border-radius: 3px;
+    background-color: var(--bg-color-content);
+    border: 1px solid var(--border-color-light);
+    border-radius: var(--border-radius-base);
 }
 
-/* Titles within comments section (e.g., "X Comments", "Add Comment") */
 #comments-section .widget-title {
     font-size: 1.6em;
     margin-top: 0;
     margin-bottom: 20px;
     padding-bottom: 10px;
-    border-bottom: 1px solid #ddd;
-    color: #333;
+    border-bottom: 1px solid var(--border-color-medium);
+    color: var(--text-color-base);
 }
 
 /* Comment List */
@@ -473,26 +514,26 @@ a {
     padding: 0;
     margin: 0 0 20px 0;
 }
-.comment-list ol { /* For threaded comments */
+.comment-list ol { 
     list-style: none;
-    padding-left: 20px; /* Indent replies */
+    padding-left: 20px; 
 }
 .comment-list li {
     padding: 15px;
     margin-bottom: 15px;
-    border: 1px solid #e0e0e0;
-    border-radius: 3px;
-    background-color: #f9f9f9;
+    border: 1px solid var(--border-color-medium); /* Was #e0e0e0 */
+    border-radius: var(--border-radius-base);
+    background-color: var(--bg-color-subtle); /* Was #f9f9f9 */
 }
-.comment-list li.comment-level-odd { /* From original theme */
-    background-color: #fff; /* Slightly different for odd levels if desired */
+.comment-list li.comment-level-odd { 
+    background-color: var(--bg-color-content); 
 }
-.comment-list li.comment-level-even { /* From original theme */
-    background-color: #f8f8f8;
+.comment-list li.comment-level-even { 
+    background-color: var(--bg-color-subtle); /* Was #f8f8f8 */
 }
-.comment-list li.comment-by-author { /* From original theme */
-    background-color: #e6f7ff; /* Highlight author's comments */
-    border-color: #b3e0ff;
+.comment-list li.comment-by-author { 
+    background-color: #e6f7ff; /* Keep specific or make a variable */
+    border-color: #b3e0ff;   /* Keep specific or make a variable */
 }
 
 .comment-author {
@@ -500,33 +541,33 @@ a {
     align-items: center;
     margin-bottom: 8px;
 }
-.comment-author .avatar { /* Typecho uses get_avatar() which outputs an img with class 'avatar' */
+.comment-author .avatar { 
     width: 40px;
     height: 40px;
     border-radius: 50%;
     margin-right: 10px;
 }
-.comment-author cite { /* Author name */
+.comment-author cite { 
     font-weight: bold;
     font-style: normal;
-    color: #333;
+    color: var(--text-color-base);
 }
 .comment-meta {
-    font-size: 0.85em;
-    color: #777;
+    font-size: var(--font-size-small);
+    color: var(--text-color-muted);
     margin-bottom: 10px;
 }
 .comment-meta a {
-    color: #777;
+    color: var(--text-color-muted);
 }
 .comment-meta a:hover {
-    color: #007bff;
+    color: var(--text-color-link-hover);
 }
 
 .comment-content {
-    line-height: 1.6;
+    line-height: var(--line-height-base);
     margin-bottom: 10px;
-    font-size: 1em;
+    font-size: 1em; /* Relative to parent, already var(--font-size-base) for li */
 }
 .comment-content p {
     margin-bottom: 10px;
@@ -535,15 +576,15 @@ a {
 .comment-reply a {
     display: inline-block;
     padding: 5px 10px;
-    background-color: #007bff;
-    color: #fff;
-    border-radius: 3px;
-    font-size: 0.9em;
+    background-color: var(--bg-color-button);
+    color: var(--text-color-on-dark);
+    border-radius: var(--border-radius-base);
+    font-size: var(--font-size-small);
     text-decoration: none;
     transition: background-color 0.3s ease;
 }
 .comment-reply a:hover {
-    background-color: #0056b3;
+    background-color: var(--bg-color-button-hover);
 }
 
 /* Comment Pagination (Typecho uses .page-navigator) */
@@ -560,27 +601,27 @@ a {
 .page-navigator a {
     display: inline-block;
     padding: 8px 12px;
-    border: 1px solid #ddd;
-    background-color: #fff;
-    color: #007bff;
+    border: 1px solid var(--border-color-medium);
+    background-color: var(--bg-color-content);
+    color: var(--text-color-link);
     text-decoration: none;
-    border-radius: 3px;
+    border-radius: var(--border-radius-base);
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 .page-navigator a:hover,
 .page-navigator .current a {
-    background-color: #007bff;
-    color: #fff;
-    border-color: #007bff;
+    background-color: var(--primary-color);
+    color: var(--text-color-on-dark);
+    border-color: var(--primary-color);
 }
 
 /* Comment Form */
 .respond {
     padding: 20px;
     margin-top: 20px;
-    background-color: #f8f8f8;
-    border: 1px solid #e0e0e0;
-    border-radius: 3px;
+    background-color: var(--bg-color-subtle); /* Was #f8f8f8 */
+    border: 1px solid var(--border-color-medium); /* Was #e0e0e0 */
+    border-radius: var(--border-radius-base);
 }
 #comment-form p {
     margin-bottom: 15px;
@@ -589,7 +630,7 @@ a {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
-    color: #555;
+    color: var(--text-color-muted); /* Was #555 */
 }
 #comment-form input[type="text"],
 #comment-form input[type="email"],
@@ -597,65 +638,60 @@ a {
 #comment-form textarea {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
+    border: 1px solid var(--border-color-dark);
+    border-radius: var(--border-radius-base);
     font-size: 1em;
-    box-sizing: border-box; /* Ensure padding doesn't expand width */
+    box-sizing: border-box; 
 }
 #comment-form input[type="text"]:focus,
 #comment-form input[type="email"]:focus,
 #comment-form input[type="url"]:focus,
 #comment-form textarea:focus {
-    border-color: #007bff;
+    border-color: var(--primary-color);
     outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.25); /* Keep specific or make variable */
 }
-#comment-form .required:after { /* From original theme */
+#comment-form .required:after { 
     content:" *";
-    color:#C00; /* Red asterisk for required fields */
+    color:#C00; 
 }
 #comment-form .submit {
-    background-color: #007bff;
-    color: #fff;
+    background-color: var(--bg-color-button);
+    color: var(--text-color-on-dark);
     padding: 12px 20px;
     border: none;
-    border-radius: 3px;
-    font-size: 1.1em;
+    border-radius: var(--border-radius-base);
+    font-size: var(--font-size-large);
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 #comment-form .submit:hover {
-    background-color: #0056b3;
+    background-color: var(--bg-color-button-hover);
 }
-.cancel-comment-reply { /* Link to cancel a reply */
+.cancel-comment-reply { 
     margin-bottom: 10px;
-    font-size: 0.9em;
+    font-size: var(--font-size-small);
 }
 .cancel-comment-reply a {
-    color: #777;
+    color: var(--text-color-muted);
 }
 .cancel-comment-reply a:hover {
-    color: #d9534f; /* A reddish color for cancel */
+    color: #d9534f; 
 }
 
-/* Notification message in comment form */
 #comment-form span[role="notify"] {
     display: block;
     padding: 10px;
-    background-color: #e9ecef;
-    border: 1px solid #ced4da;
-    border-radius: 3px;
-    font-size: 0.9em;
-    color: #495057;
+    background-color: var(--bg-color-subtle);
+    border: 1px solid var(--border-color-medium); /* Was #ced4da */
+    border-radius: var(--border-radius-base);
+    font-size: var(--font-size-small);
+    color: var(--text-color-muted); /* Was #495057 */
     margin-bottom: 15px;
 }
 
 /* Sidebar Styles */
-#rightbar {
-    /* Basic #rightbar styles are already in place (flex:1, padding, bg-color) */
-    /* Add any additional overall sidebar styling here if needed */
-}
-
+/* #rightbar basic styles already handled */
 .sidebar-inner {
     /* Container for all widgets if further styling is needed */
 }
@@ -663,22 +699,22 @@ a {
 .widget {
     padding: 15px;
     margin-bottom: 20px;
-    background-color: #fff; /* Widget background */
-    border: 1px solid #e0e0e0;
-    border-radius: 3px;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    background-color: var(--bg-color-widget);
+    border: 1px solid var(--border-color-medium); /* Was #e0e0e0 */
+    border-radius: var(--border-radius-base);
+    box-shadow: var(--box-shadow-base); /* Was 0 1px 2px rgba(0,0,0,0.05) */
 }
 .widget:last-child {
     margin-bottom: 0;
 }
 
 .widget .widget-title {
-    font-size: 1.3em; /* Slightly smaller than post/page titles */
+    font-size: 1.3em; 
     margin-top: 0;
     margin-bottom: 15px;
     padding-bottom: 10px;
-    border-bottom: 1px solid #eee;
-    color: #333;
+    border-bottom: 1px solid var(--border-color-light);
+    color: var(--text-color-base);
 }
 
 .widget .widget-list {
@@ -688,21 +724,21 @@ a {
 }
 .widget .widget-list li {
     padding: 6px 0;
-    border-bottom: 1px dotted #eee;
-    font-size: 0.95em;
+    border-bottom: 1px dotted var(--border-color-light); /* Was #eee */
+    font-size: var(--font-size-small); /* Was 0.95em */
 }
 .widget .widget-list li:last-child {
     border-bottom: none;
 }
 .widget .widget-list li a {
-    color: #333;
+    color: var(--text-color-base);
 }
 .widget .widget-list li a:hover {
-    color: #007bff;
+    color: var(--text-color-link-hover);
 }
-.widget .widget-list li .post-date { /* For recent posts if date is shown */
-    font-size: 0.9em;
-    color: #777;
+.widget .widget-list li .post-date { 
+    font-size: var(--font-size-small);
+    color: var(--text-color-muted);
     margin-left: 5px;
 }
 
@@ -713,63 +749,63 @@ a {
 .widget_search input.text {
     flex-grow: 1;
     padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 3px 0 0 3px;
-    font-size: 0.95em;
+    border: 1px solid var(--border-color-dark);
+    border-radius: var(--border-radius-base) 0 0 var(--border-radius-base);
+    font-size: var(--font-size-small); /* Was 0.95em */
 }
 .widget_search button.submit {
     padding: 8px 12px;
-    background-color: #007bff;
-    color: #fff;
-    border: 1px solid #007bff;
-    border-left: none; /* Avoid double border with input */
-    border-radius: 0 3px 3px 0;
+    background-color: var(--bg-color-button);
+    color: var(--text-color-on-dark);
+    border: 1px solid var(--primary-color);
+    border-left: none; 
+    border-radius: 0 var(--border-radius-base) var(--border-radius-base) 0;
     cursor: pointer;
-    font-size: 0.95em;
+    font-size: var(--font-size-small); /* Was 0.95em */
     transition: background-color 0.3s ease;
 }
 .widget_search button.submit:hover {
-    background-color: #0056b3;
+    background-color: var(--bg-color-button-hover);
 }
-.sr-only { /* Ensure .sr-only is defined if not already (it was in original style.css) */
-    position: absolute;
-    width: 1px;
+.sr-only { 
+    position: absolute !important; /* Added !important from visually-hidden-focusable */
     height: 1px;
-    padding: 0;
-    margin: -1px;
+    width: 1px;
     overflow: hidden;
-    clip: rect(0,0,0,0);
-    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap; 
+    /* border: 0; Removed as it's covered by reset */
+    /* padding: 0; margin: -1px; Also covered by reset and visually-hidden-focusable */
 }
 
 /* Archive Page Styles */
 .archive-page {
     padding: 20px;
-    background-color: #fff;
-    border: 1px solid #eee;
-    border-radius: 3px;
+    background-color: var(--bg-color-content);
+    border: 1px solid var(--border-color-light);
+    border-radius: var(--border-radius-base);
 }
 
 .archive-header {
     margin-bottom: 20px;
     padding-bottom: 15px;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid var(--border-color-light); /* Was #f0f0f0 */
 }
 
 .archive-title {
-    font-size: 1.8em; /* Consistent with other section titles */
+    font-size: 1.8em; 
     margin-top: 0;
-    margin-bottom: 0; /* No bottom margin as header has padding */
-    color: #333;
+    margin-bottom: 0; 
+    color: var(--text-color-base);
 }
 
-.post-list { /* General post list container, can be reused */
+.post-list { 
     margin-bottom: 20px;
 }
 
-.post-list-item { /* Individual item in an archive list */
+.post-list-item { 
     padding: 15px 0;
-    border-bottom: 1px dotted #ddd;
+    border-bottom: 1px dotted var(--border-color-medium);
 }
 .post-list-item:last-child {
     border-bottom: none;
@@ -785,99 +821,89 @@ a {
     margin-bottom: 5px;
 }
 .post-list-item .item-title a {
-    color: #333;
+    color: var(--text-color-base);
     text-decoration: none;
 }
 .post-list-item .item-title a:hover {
-    color: #007bff;
+    color: var(--text-color-link-hover);
 }
 
 .post-list-item .item-meta {
-    font-size: 0.85em;
-    color: #777;
+    font-size: var(--font-size-small); /* Was 0.85em */
+    color: var(--text-color-muted);
     margin-bottom: 10px;
 }
 .post-list-item .item-meta span {
     margin-right: 8px;
 }
 .post-list-item .item-meta a {
-    color: #555;
+    color: var(--text-color-muted); /* Was #555 */
 }
 .post-list-item .item-meta a:hover {
-    color: #007bff;
+    color: var(--text-color-link-hover);
 }
 
 .post-list-item .item-excerpt {
     font-size: 1em;
-    line-height: 1.6;
-    color: #555;
+    line-height: var(--line-height-base);
+    color: var(--text-color-muted); /* Was #555 */
 }
-.post-list-item .item-excerpt p { /* Excerpt might be wrapped in p */
+.post-list-item .item-excerpt p { 
     margin-bottom: 0;
 }
 
 .no-results {
     padding: 20px;
     text-align: center;
-    font-size: 1.2em;
-    color: #777;
+    font-size: var(--font-size-large); /* Was 1.2em */
+    color: var(--text-color-muted);
 }
 
-/* Pagination styles (.page-navigator) are already defined from comments.php styling */
-/* Ensure they look good in this context too. */
-
 /* Header Search Form Styles */
-#header .container { /* Modified from task, as #header already has .container */
+#header .container { 
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+    flex-wrap: wrap; 
 }
 
 .site-branding {
-    /* flex-grow: 1; */ /* Allow it to take space, adjust as needed */
+    /* flex-grow: 1; */ 
 }
 
 .header-search {
-    margin-left: auto; /* Pushes to the right if #header .container is flex */
+    margin-left: auto; 
     display: flex; 
     align-items: center; 
 }
 
-/* Re-using existing #search styling by ensuring the form in header-search keeps id="search" */
-/* If #search input.text or #search button.submit needs header-specific tweaks, target them like: */
-/* .header-search #search input.text { ... } */
-/* .header-search #search button.submit { ... } */
-
-/* Ensure the input ID specific styles if any, or rely on .text class */
-#s-header { /* ID of the input field within header search form */
-    /* width: 200px; */ /* Example: fixed width */
+#s-header { 
+    /* width: 200px; */ 
 }
 
 /* Header Date Display */
 .header-date-display {
-    font-size: 0.85em;
-    color: #555;
+    font-size: var(--font-size-small); /* Was 0.85em */
+    color: var(--text-color-muted); /* Was #555 */
     text-align: right; 
     padding: 5px 0;
-    /* Adjust margin as needed, e.g., if it's part of the flex layout or wraps */
-    /* margin-left: 15px; */ /* Example if it's next to search */
+    /* margin-left: 15px; */ 
 }
 
 /* Hotkey Help Modal */
 .hotkey-modal {
-    position: fixed; /* Or absolute, depending on desired behavior */
+    position: fixed; 
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #fff;
+    background-color: var(--bg-color-content);
     padding: 20px;
-    border: 1px solid #ccc;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    z-index: 1000; /* Ensure it's on top */
+    border: 1px solid var(--border-color-dark);
+    box-shadow: var(--box-shadow-base); /* Was 0 4px 8px rgba(0,0,0,0.1) */
+    z-index: 1000; 
     width: 80%;
     max-width: 500px;
-    border-radius: 5px;
+    border-radius: var(--border-radius-base); /* Was 5px */
 }
 .hotkey-modal-content h3 {
     margin-top: 0;
@@ -896,14 +922,14 @@ a {
     display: block;
     margin-top: 15px;
     padding: 8px 15px;
-    background-color: #007bff;
-    color: #fff;
+    background-color: var(--bg-color-button);
+    color: var(--text-color-on-dark);
     border: none;
-    border-radius: 3px;
+    border-radius: var(--border-radius-base);
     cursor: pointer;
 }
 #close-hotkey-modal:hover {
-    background-color: #0056b3;
+    background-color: var(--bg-color-button-hover);
 }
 
 /* Enhanced Focus Styles for Accessibility */
@@ -915,54 +941,36 @@ input[type="url"]:focus,
 input[type="password"]:focus,
 textarea:focus,
 select:focus,
-[tabindex]:focus { /* Catch elements made focusable with tabindex */
-    outline: 2px solid #0056b3; /* A slightly darker blue than default links */
-    outline-offset: 2px; /* Adds a little space between element and outline */
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* Optional: a subtle glow */
+[tabindex]:focus { 
+    outline: 2px solid var(--primary-color-hover); 
+    outline-offset: 2px; 
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); 
 }
-
-/* Specific adjustment for buttons if the default outline is too tight */
-button:focus {
-    /* outline-offset: 1px; /* Example if needed */
-}
-
-/* Remove default outline if you are providing a very clear custom one via box-shadow or border */
-/* However, it's often better to enhance the default outline as above. */
-/* Example of replacing (use with caution): */
-/*
-a, button, input, textarea, select {
-    outline: none; 
-}
-a:focus, button:focus, input:focus, textarea:focus, select:focus {
-    box-shadow: 0 0 0 2px #007bff; // Example custom focus
-}
-*/
 
 /* Footer Content Styling */
 #footer #hspan {
-    /* hspan was previously used for copyright, ensure it allows block elements */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 10px 0; /* Add some padding to hspan if needed */
+    padding: 10px 0; 
 }
 .copyright-info {
-    margin-bottom: 5px; /* Space between copyright and ICP */
-    font-size: 0.9em;
-    color: #ccc; /* Slightly dimmer than main footer text if #footer color is #fff */
+    margin-bottom: 5px; 
+    font-size: var(--font-size-small);
+    color: var(--border-color-dark); /* Was #ccc, assuming footer text is --text-color-on-dark */
 }
 .copyright-info a {
-    color: #ddd; /* Link color within copyright */
+    color: var(--border-color-medium); /* Was #ddd */
     text-decoration: underline;
 }
 .copyright-info a:hover {
-    color: #fff;
+    color: var(--text-color-on-dark);
 }
-.icp-info { /* Already styled in a previous step, ensure it still looks good */
-    font-size: 0.9em;
-    color: #ccc; /* Consistent with copyright-info */
-    margin-top: 5px; /* Ensure space if copyright is above */
+.icp-info { 
+    font-size: var(--font-size-small);
+    color: var(--border-color-dark); /* Was #ccc */
+    margin-top: 5px; 
 }
 
 /* Visually hide an element but keep it accessible to screen readers and keyboard */
@@ -972,25 +980,24 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus {
     width: 1px;
     overflow: hidden;
     clip: rect(1px, 1px, 1px, 1px);
-    white-space: nowrap; /* Prevent line breaks from affecting layout if unclipped */
+    white-space: nowrap; 
 }
 
 /* Make it visible when it receives focus */
 .visually-hidden-focusable:focus {
-    position: static !important; /* Or relative, depending on layout needs */
+    position: static !important; 
     height: auto;
     width: auto;
     overflow: visible;
     clip: auto;
     white-space: normal;
-    /* Add some styling to make it look like a button/link when focused */
-    display: inline-block; /* Or block, as appropriate */
+    display: inline-block; 
     padding: 5px 10px;
-    background-color: #f0f0f0; /* Light background */
-    color: #333; /* Dark text */
-    border: 1px solid #ccc;
-    border-radius: 3px;
+    background-color: var(--bg-color-subtle); /* Was #f0f0f0 */
+    color: var(--text-color-base); 
+    border: 1px solid var(--border-color-dark);
+    border-radius: var(--border-radius-base);
     text-decoration: none;
-    margin: 5px; /* Add some margin so it doesn't sit flush against other elements */
-    z-index: 1001; /* Ensure it's visible on top of other elements if needed */
+    margin: 5px; 
+    z-index: 1001; 
 }

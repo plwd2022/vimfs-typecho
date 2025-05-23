@@ -10,3 +10,20 @@ function themeConfig($form) {
   array('ShowRecentPosts', 'ShowRecentComments', 'ShowCategory', 'ShowArchive'), '侧边栏显示');
   $form->addInput($sidebarBlock->multiMode());
 }
+
+/**
+ * Define custom fields for posts and pages.
+ *
+ * @param Typecho_Widget_Helper_Layout $layout
+ */
+function themeFields(Typecho_Widget_Helper_Layout $layout) {
+    $post_thumbnail = new Typecho_Widget_Helper_Form_Element_Text(
+        'post_thumbnail', // Field name
+        NULL,             // Options (for select/radio)
+        NULL,             // Default value
+        '文章缩略图 URL', // Label (Hardcoded Chinese)
+        '输入文章缩略图的完整URL地址。将显示在文章列表和文章顶部（如果主题支持）。' // Help text (Hardcoded Chinese)
+    );
+    $layout->addItem($post_thumbnail); // Add to all layout types (post, page)
+}
+?>

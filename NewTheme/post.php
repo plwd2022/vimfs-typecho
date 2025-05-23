@@ -11,6 +11,12 @@
                 </div>
             </header>
             
+            <?php if ($this->fields->post_thumbnail): ?>
+                <div class="single-post-thumbnail">
+                    <img src="<?php $this->fields->post_thumbnail(); ?>" alt="<?php $this->title(); ?> 的缩略图" />
+                </div>
+            <?php endif; ?>
+            
             <div class="entry-content">
                 <?php $this->content(); ?>
             </div>

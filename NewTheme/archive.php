@@ -14,6 +14,13 @@
                     <div class="post-list archive-post-list">
                         <?php while($this->next()): ?>
                         <article class="post-list-item">
+                            <?php if ($this->fields->post_thumbnail): ?>
+                                <div class="post-item-thumbnail archive-thumbnail">
+                                    <a href="<?php $this->permalink(); ?>" aria-hidden="true" tabindex="-1">
+                                        <img src="<?php $this->fields->post_thumbnail(); ?>" alt="<?php $this->title(); ?> 的缩略图" />
+                                    </a>
+                                </div>
+                            <?php endif; ?>
                             <header class="item-header">
                                 <h2 class="item-title"><a href="<?php $this->permalink() ?>" accesskey="3"><?php $this->title() ?></a></h2>
                                 <div class="item-meta">

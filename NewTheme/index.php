@@ -22,7 +22,21 @@
         <h2 class="widget-title"><a accesskey="2" href="<?php $category->permalink(); ?>"><?php $category->name(); ?></a></h2>
         <ul class="widget-index-list">
           <?php while($categoryPosts->next()): ?>
-            <li><a accesskey="3" href="<?php $categoryPosts->permalink() ?>"><?php $categoryPosts->title() ?></a><span><?php $categoryPosts->date('Y-m-d'); ?></span></li>
+            <li class="post-item-with-thumbnail">
+                <?php if ($categoryPosts->fields->post_thumbnail): ?>
+                    <div class="post-item-thumbnail">
+                        <a href="<?php $categoryPosts->permalink(); ?>" aria-hidden="true" tabindex="-1">
+                            <img src="<?php $categoryPosts->fields->post_thumbnail(); ?>" alt="<?php $categoryPosts->title(); ?> 的缩略图" />
+                        </a>
+                    </div>
+                <?php endif; ?>
+                <div class="post-item-content">
+                    <h3 class="post-item-title"><a accesskey="3" href="<?php $categoryPosts->permalink() ?>"><?php $categoryPosts->title() ?></a></h3>
+                    <span class="post-item-date"><?php $categoryPosts->date('Y-m-d'); ?></span>
+                    <?php // Optional: Add excerpt here if desired for index page ?>
+                    <?php // $categoryPosts->excerpt(70, '...'); ?>
+                </div>
+            </li>
           <?php endwhile; ?>
         </ul>
       </section>
