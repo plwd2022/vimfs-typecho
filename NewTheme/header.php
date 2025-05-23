@@ -6,13 +6,13 @@
   <meta name="renderer" content="webkit">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title><?php
-    $this->archiveTitle(array('category' => _t('分类：%s'), 'search' => _t('关键字：%s'), 'tag'     =>  _t('标签：%s'), 'author' => _t('作者：%s')), '', ' - ');
+    $this->archiveTitle(array('category' => '分类：%s', 'search' => '关键字：%s', 'tag'     => '标签：%s', 'author' => '作者：%s'), '', ' - ');
     $this->options->title();
     if($this->is('index')):
-      _e(' - ');
+      echo ' - ';
       echo $this->options->description();
-      _e(' | ');
-      _e('网站首页');
+      echo ' | ';
+      echo '网站首页';
     endif;
     ?></title>
   <!-- 使用url函数转换相关路径 -->
@@ -35,7 +35,7 @@
 </head>
 <body>
 <!--[if lt IE 8]>
-  <div class="eeyinfo"><?php _e('当前浏览器过旧，为了更好的体验，请升级到更新的浏览器。'); ?></div>
+  <div class="eeyinfo">当前浏览器过旧，为了更好的体验，请升级到更新的浏览器。</div>
 <![endif]-->
 
 <div id="header" class="container">
@@ -54,19 +54,19 @@
 
     <div class="header-search"> <?php // New wrapper for search in header ?>
         <form id="search" method="post" action="<?php $this->options->siteUrl(); ?>" role="search">
-            <label for="s-header" class="sr-only"><?php _e('Search keywords'); ?></label>
-            <input type="text" name="s" id="s-header" class="text" accesskey="1" placeholder="<?php _e('Search site...'); ?>" /> <?php // Changed accesskey to 1 ?>
-            <button type="submit" class="submit"><?php _e('Go'); ?></button>
+            <label for="s-header" class="sr-only">搜索关键字</label>
+            <input type="text" name="s" id="s-header" class="text" accesskey="1" placeholder="搜索全站..." /> <?php // Changed accesskey to 1 ?>
+            <button type="submit" class="submit">搜索</button>
         </form>
     </div>
     
     <div class="header-date-display">
-         <?php echo date('Y年m月d日'); ?> <?php $weekarray=array(_t("日"),_t("一"),_t("二"),_t("三"),_t("四"),_t("五"),_t("六")); echo _t("星期").$weekarray[date("w")]; ?>
+         <?php echo date('Y年m月d日'); ?> <?php $weekarray=array("日","一","二","三","四","五","六"); echo "星期".$weekarray[date("w")]; ?>
     </div>
 </div> <?php // End of #header .container ?>
 
   <div id="nav" class="container"> <!-- Added container class for nav as well -->
-      <a <?php if($this->is('index')): ?>class="current" aria-current="page"<?php endif; ?> href="<?php $this->options->siteUrl(); ?>"><?php _e('首页'); ?></a>
+      <a <?php if($this->is('index')): ?>class="current" aria-current="page"<?php endif; ?> href="<?php $this->options->siteUrl(); ?>">首页</a>
     <?php $this->widget('Widget_Metas_Category_List')->to($pages); ?>
     <?php while($pages->next()): ?>
       <a <?php if($this->is('category',$pages->slug)): ?>class="current" aria-current="page"<?php endif; ?> href="<?php $pages->permalink(); ?>"><?php $pages->name(); ?></a>
@@ -79,21 +79,21 @@
 
 <div id="hotkey-help-modal" class="hotkey-modal" style="display:none;" role="dialog" aria-labelledby="hotkey-modal-title" aria-hidden="true">
     <div class="hotkey-modal-content">
-        <h3 id="hotkey-modal-title"><?php _e('Keyboard Shortcuts'); ?></h3>
-        <p><?php _e('Navigation:'); ?></p>
+        <h3 id="hotkey-modal-title">键盘快捷键</h3>
+        <p>导航操作：</p>
         <ul>
-            <li><?php _e('Alt+2: Cycle through categories/sections'); ?></li>
-            <li><?php _e('Alt+3: Cycle through articles/content/links'); ?></li>
-            <li><?php _e('Alt+1: Focus the search box'); ?></li>
+            <li>Alt+2：循环切换分类/板块</li>
+            <li>Alt+3：循环切换文章/内容/链接</li>
+            <li>Alt+1：聚焦到搜索框</li>
         </ul>
-        <p><?php _e('Media Player:'); ?></p>
+        <p>播放器控制：</p>
         <ul>
-            <li><?php _e('Shift+Space: Play/Pause'); ?></li>
-            <li><?php _e('Shift+Left/Right Arrow: Rewind/Fast-Forward'); ?></li>
-            <li><?php _e('Shift+Up/Down Arrow: Volume Up/Down'); ?></li>
-            <li><?php _e('Esc: Stop/Resume (if applicable)'); ?></li>
+            <li>Shift+空格：播放/暂停</li>
+            <li>Shift+左/右方向键：快退/快进</li>
+            <li>Shift+上/下方向键：音量增/减</li>
+            <li>Esc：停止/恢复 (适用情况下)</li>
         </ul>
-        <button id="close-hotkey-modal" aria-label="<?php _e('Close keyboard shortcuts help'); ?>"><?php _e('Close'); ?></button>
+        <button id="close-hotkey-modal" aria-label="关闭键盘快捷键帮助">关闭</button>
     </div>
 </div>
 
@@ -103,7 +103,7 @@
 
     
 	</div>
-                  <span><a id="hotkey-help-trigger" href="#" role="button"><?php _e('Hotkey Help'); ?></a></span>
+                  <span><a id="hotkey-help-trigger" href="#" role="button">热键帮助</a></span>
   
   <?php // The login/logout links and the old #rightbar containing search/date are removed from this general area. 
         // Login/logout links might be better placed in a user menu or footer.
@@ -111,8 +111,8 @@
   ?>
   
 	<div class="here">
-    <?php _e('当前位置：'); ?>
-    <a href="<?php $this->options->siteUrl(); ?>"><?php _e('首页'); ?></a> ·
+    当前位置：
+    <a href="<?php $this->options->siteUrl(); ?>">首页</a> ·
     <?php if ($this->is('index')): ?>
     <?php elseif ($this->is('post')): ?>
     <?php $this->category(); ?> ·

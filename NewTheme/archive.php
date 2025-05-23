@@ -4,10 +4,10 @@
                 <?php if ($this->have()): ?>
                     <header class="archive-header">
                         <h1 class="archive-title" accesskey="2"><?php $this->archiveTitle(array(
-                            'category'  =>  _t('Category: %s'),
-                            'search'    =>  _t('Search Results for: %s'),
-                            'tag'       =>  _t('Tag: %s'),
-                            'author'    =>  _t('Author: %s')
+                            'category'  =>  '分类：%s',
+                            'search'    =>  '搜索结果：%s',
+                            'tag'       =>  '标签：%s',
+                            'author'    =>  '作者：%s'
                             ), '', ''); ?></h1>
                     </header>
                     
@@ -17,10 +17,10 @@
                             <header class="item-header">
                                 <h2 class="item-title"><a href="<?php $this->permalink() ?>" accesskey="3"><?php $this->title() ?></a></h2>
                                 <div class="item-meta">
-                                    <span><?php _e('On '); ?><?php $this->date('Y-m-d'); ?></span>
+                                    <span>发布于 <?php $this->date('Y-m-d'); ?></span>
                                     <?php if ($this->is('post')): // Only show author and category for actual posts, not all archive types ?>
-                                    | <span><?php _e('By '); ?><?php $this->author(); ?></span>
-                                    | <span><?php _e('In '); ?><?php $this->category(','); ?></span>
+                                    | <span>作者 <?php $this->author(); ?></span>
+                                    | <span>分类于 <?php $this->category(','); ?></span>
                                     <?php endif; ?>
                                 </div>
                             </header>
@@ -33,11 +33,11 @@
                     </div>
                 <?php else: ?>
                     <div class="no-results">
-                        <p><?php _e('Sorry, no content found.'); ?></p>
+                        <p>抱歉，没有找到相关内容。</p>
                     </div>
                 <?php endif; ?>
 
-                <?php $this->pageNav(_t('&laquo; Previous'), _t('Next &raquo;')); ?>
+                <?php $this->pageNav('&laquo; 上一页', '下一页 &raquo;'); ?>
             </div><?php // .archive-page ?>
         </div><?php // #main ?>
 <?php $this->need('sidebar.php'); ?>

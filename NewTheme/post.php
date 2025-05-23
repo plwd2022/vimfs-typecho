@@ -5,9 +5,9 @@
             <header class="entry-header">
                 <h1 class="entry-title"><?php $this->title(); ?></h1>
                 <div class="entry-meta">
-                    <span><?php _e('By: '); ?><?php $this->author(); ?></span> | 
-                    <span><?php _e('Date: '); ?><?php $this->date('Y-m-d'); ?></span> | 
-                    <span><?php _e('Category: '); ?><?php $this->category(','); ?></span>
+                    <span>作者：<?php $this->author(); ?></span> | 
+                    <span>日期：<?php $this->date('Y-m-d'); ?></span> | 
+                    <span>分类：<?php $this->category(','); ?></span>
                 </div>
             </header>
             
@@ -17,11 +17,11 @@
             
             <footer class="entry-footer">
                 <div class="post-tags">
-                    <?php _e('Tags: '); ?><?php $this->tags(', ', true, 'None'); ?>
+                    标签：<?php $this->tags(', ', true, '无标签'); ?>
                 </div>
                 <nav class="post-navigation">
-                    <div class="nav-previous"><?php _e('Previous: '); $this->thePrev('%s','None'); ?></div>
-                    <div class="nav-next"><?php _e('Next: '); $this->theNext('%s','None'); ?></div>
+                    <div class="nav-previous">上一篇：<?php $this->thePrev('%s','没有了'); ?></div>
+                    <div class="nav-next">下一篇：<?php $this->theNext('%s','沒有了'); ?></div>
                 </nav>
             </footer>
         </article>
@@ -35,7 +35,7 @@
         if ($relatedPosts->have()):
         ?>
         <section class="related-posts">
-            <h2 class="section-title" accesskey="2"><?php _e('Related Articles'); ?></h2>
+            <h2 class="section-title" accesskey="2">相关文章</h2>
             <ul class="widget-list">
                 <?php while ($relatedPosts->next()): ?>
                 <li><a href="<?php $relatedPosts->permalink(); ?>"><?php $relatedPosts->title(); ?></a><span><?php $relatedPosts->date('Y-m-d'); ?></span></li>

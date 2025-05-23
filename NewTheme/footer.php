@@ -1,6 +1,6 @@
-</div>
+</div> <?php // This might be the closing div of site-content or similar ?>
 <div id="footer">
-  <?php // <script type="text/javascript">startdoing();</script> // Removed as startdoing() is called from main.js ?>
+  <?php // Removed <script type="text/javascript">startdoing();</script> ?>
   <div id="hspan">
     <div class="icp-info"><?php _e('备案号预留区域'); ?> (ICP License placeholder)</div>
   </div>
@@ -14,14 +14,14 @@
         var sHeader = document.getElementById('s-header');
         if (sHeader) sHeader.focus();
     } catch(e) { console.error("Error focusing on #s-header:", e); }
-    <?php else: ?>
+    <?php else: // Not index page, so it's a post, page, archive, etc. ?>
     try {
-        var entryTitle = document.querySelector('.entry-title');
-        if (entryTitle) {
-          entryTitle.setAttribute('tabindex', -1);
-          entryTitle.focus();
+        var mainContentArea = document.getElementById('main');
+        if (mainContentArea) {
+          mainContentArea.setAttribute('tabindex', -1); // Make it programmatically focusable
+          mainContentArea.focus();
         }
-    } catch(e) { console.error("Error focusing on .entry-title:", e); }
+    } catch(e) { console.error("Error focusing on #main:", e); }
     <?php endif; ?>
   })();
 </script>

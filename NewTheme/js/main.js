@@ -11,23 +11,41 @@ function setupHotkeyModal() {
         // Event listener to open the modal
         hotkeyHelpTrigger.addEventListener('click', function(e) {
             e.preventDefault();
+            var modalContent = hotkeyHelpModal.querySelector('.hotkey-modal-content'); // Get content area
+
             hotkeyHelpModal.style.display = 'block';
             hotkeyHelpModal.setAttribute('aria-hidden', 'false');
-            closeHotkeyModal.focus(); 
+            
+            if (modalContent) {
+                modalContent.setAttribute('aria-live', 'assertive'); // Activate live region
+            }
+
+            // Delay focus slightly to ensure modal is ready
+            requestAnimationFrame(function() {
+                closeHotkeyModal.focus();
+            });
         });
 
         // Event listener to close the modal via button
         closeHotkeyModal.addEventListener('click', function() {
+            var modalContent = hotkeyHelpModal.querySelector('.hotkey-modal-content');
             hotkeyHelpModal.style.display = 'none';
             hotkeyHelpModal.setAttribute('aria-hidden', 'true');
+            if (modalContent) {
+                modalContent.removeAttribute('aria-live'); // Deactivate live region
+            }
             hotkeyHelpTrigger.focus(); 
         });
 
         // Event listener to close the modal via Escape key
         hotkeyHelpModal.addEventListener('keydown', function(e) {
             if (e.key === 'Escape' || e.keyCode === 27) {
+                var modalContent = hotkeyHelpModal.querySelector('.hotkey-modal-content');
                 hotkeyHelpModal.style.display = 'none';
                 hotkeyHelpModal.setAttribute('aria-hidden', 'true');
+                if (modalContent) {
+                    modalContent.removeAttribute('aria-live'); // Deactivate live region
+                }
                 hotkeyHelpTrigger.focus();
             }
         });
