@@ -10,23 +10,25 @@
 </div>
 
 <script type="text/javascript">
-  // Initial page focus logic (PHP-dependent)
-  (function() {
-    <?php if($this->is('index')): ?>
-    try { 
-        var sHeader = document.getElementById('s-header');
-        if (sHeader) sHeader.focus();
-    } catch(e) { console.error("Error focusing on #s-header:", e); }
-    <?php else: // Not index page, so it's a post, page, archive, etc. ?>
-    try {
-        var mainContentArea = document.getElementById('main');
-        if (mainContentArea) {
-          mainContentArea.setAttribute('tabindex', -1); // Make it programmatically focusable
-          mainContentArea.focus();
-        }
-    } catch(e) { console.error("Error focusing on #main:", e); }
-    <?php endif; ?>
-  })();
+  document.addEventListener('DOMContentLoaded', function() {
+    // Initial page focus logic (PHP-dependent)
+    (function() { // Keep the IIFE for scope, or remove if not strictly needed inside DOMContentLoaded
+      <?php if($this->is('index')): ?>
+      try { 
+          var sHeader = document.getElementById('s-header');
+          if (sHeader) sHeader.focus();
+      } catch(e) { console.error("Error focusing on #s-header:", e); }
+      <?php else: // Not index page, so it's a post, page, archive, etc. ?>
+      try {
+          var mainContentArea = document.getElementById('main');
+          if (mainContentArea) {
+            mainContentArea.setAttribute('tabindex', -1); // Make it programmatically focusable
+            mainContentArea.focus();
+          }
+      } catch(e) { console.error("Error focusing on #main:", e); }
+      <?php endif; ?>
+    })();
+  });
 </script>
 
 <script type="text/javascript" src="<?php $this->options->themeUrl('js/main.js'); ?>" defer></script>

@@ -964,3 +964,33 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus {
     color: #ccc; /* Consistent with copyright-info */
     margin-top: 5px; /* Ensure space if copyright is above */
 }
+
+/* Visually hide an element but keep it accessible to screen readers and keyboard */
+.visually-hidden-focusable {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap; /* Prevent line breaks from affecting layout if unclipped */
+}
+
+/* Make it visible when it receives focus */
+.visually-hidden-focusable:focus {
+    position: static !important; /* Or relative, depending on layout needs */
+    height: auto;
+    width: auto;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+    /* Add some styling to make it look like a button/link when focused */
+    display: inline-block; /* Or block, as appropriate */
+    padding: 5px 10px;
+    background-color: #f0f0f0; /* Light background */
+    color: #333; /* Dark text */
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    text-decoration: none;
+    margin: 5px; /* Add some margin so it doesn't sit flush against other elements */
+    z-index: 1001; /* Ensure it's visible on top of other elements if needed */
+}

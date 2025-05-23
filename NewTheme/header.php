@@ -103,7 +103,7 @@
 
     
 	</div>
-                  <span><a id="hotkey-help-trigger" href="#" role="button">热键帮助</a></span>
+                  <span><a id="hotkey-help-trigger" class="visually-hidden-focusable" href="#" role="button">热键帮助</a></span>
   
   <?php // The login/logout links and the old #rightbar containing search/date are removed from this general area. 
         // Login/logout links might be better placed in a user menu or footer.
