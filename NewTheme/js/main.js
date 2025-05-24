@@ -128,12 +128,19 @@ function setupDailyBackgroundImage() {
     function applyBackground(imageUrl) {
         const img = new Image();
         img.onload = function() {
-            document.body.style.backgroundImage = 'url(' + imageUrl + ')';
+            document.body.style.backgroundImage = 'url(' + imageUrl + ')'; // For ::before to inherit
             document.body.classList.add('with-daily-background');
+            // Add bg-loaded class after a tiny delay to ensure CSS transition applies
+            requestAnimationFrame(function() {
+                requestAnimationFrame(function() { // Double rAF for good measure in some browsers
+                    document.body.classList.add('bg-loaded');
+                });
+            });
         };
         img.onerror = function() {
             console.error('Error loading background image:', imageUrl);
-            document.body.classList.remove('with-daily-background'); // Optional: remove class on error
+            document.body.classList.remove('with-daily-background');
+            document.body.classList.remove('bg-loaded');
         };
         img.src = imageUrl;
     }
@@ -144,22 +151,22 @@ function setupMobileMenu() {
     var mainNav = document.getElementById('main-navigation');
 
     if (menuToggle && mainNav) {
-        // Set initial aria-hidden state based on aria-expanded, if not already set in HTML
-        // This ensures consistency if JS loads after HTML is partially parsed.
-        // However, the primary fix is adding aria-hidden="true" in the HTML.
-        // mainNav.setAttribute('aria-hidden', menuToggle.getAttribute('aria-expanded') !== 'true');
+        // If the mobile menu toggle button is hidden by CSS (typically on desktop)
+        // then don't attach listeners or manage its ARIA states.
+        if (getComputedStyle(menuToggle).display === 'none') {
+            return;
+        }
 
-
+        // Existing event listener logic:
         menuToggle.addEventListener('click', function() {
             var isExpanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
             var newExpandedState = !isExpanded;
             menuToggle.setAttribute('aria-expanded', newExpandedState);
             mainNav.classList.toggle('nav-open');
-            mainNav.setAttribute('aria-hidden', !newExpandedState); // Toggle aria-hidden
-            menuToggle.classList.toggle('active'); // Optional for styling the button
+            mainNav.setAttribute('aria-hidden', !newExpandedState); 
+            menuToggle.classList.toggle('active'); 
 
-            if (newExpandedState) { // Menu is now open
-                // Find focusable elements within the navigation menu
+            if (newExpandedState) { 
                 const focusableElementsSelector = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
                 var focusableItems = mainNav.querySelectorAll(focusableElementsSelector);
                 if (focusableItems.length > 0) {
@@ -167,7 +174,7 @@ function setupMobileMenu() {
                         focusableItems[0].focus();
                     });
                 }
-            } else { // Menu is now closed
+            } else { 
                 menuToggle.focus();
             }
         });

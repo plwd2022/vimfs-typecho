@@ -66,8 +66,6 @@
                 <?php endif; ?>
                 <li><a href="<?php $this->options->feedUrl(); ?>"><?php echo _t('文章 RSS'); ?></a></li>
                 <li><a href="<?php $this->options->commentsFeedUrl(); ?>"><?php echo _t('评论 RSS'); ?></a></li>
-                <li><a href="http://www.staraudio.net/" target="_blank"><?php echo _t('星之音'); ?></a></li>
-                <li><a href="https://typecho.org">Typecho</a></li>
             </ul>
         </aside>
         <?php endif; ?>
