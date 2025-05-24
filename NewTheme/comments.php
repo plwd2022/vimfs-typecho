@@ -1,4 +1,5 @@
 <?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
+<div id="comments"> <?php // ADDED ?>
   <?php $this->comments()->to($comments); ?>
   <?php if ($comments->have()): ?>
   <h2 class="widget-title" accesskey="z" tabindex="0"><?php $this->commentsNum(_t('暂无评论'), _t('仅有 1 条评论'), _t('已有 %d 条评论')); ?></h2>
@@ -41,3 +42,4 @@
   <?php else: ?>
   <h3><?php echo _t('评论已关闭'); ?></h3>
   <?php endif; ?>
+</div> <?php // ADDED ?>

@@ -637,3 +637,35 @@ body.with-daily-background {
 }
 
 /* === End of Appended Styles === */
+
+/* === Background Image Blur & Transition Enhancements === */
+body.with-daily-background {
+    background-image: none !important; /* Ensure body itself does not display the image directly */
+    position: relative; /* Needed for z-index stacking of pseudo-element */
+    z-index: 0; /* Ensure body content is above the pseudo-element */
+}
+
+body.with-daily-background::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1; /* Place it behind all body content */
+
+    background-image: inherit; /* This will be set by JS on the body, then inherited here */
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed; /* This was in the previous CSS, keeping it */
+
+    filter: blur(5px); /* Apply blur */
+    opacity: 0; /* Start transparent */
+    transition: opacity 1s ease-in-out; /* Fade-in transition */
+}
+
+body.with-daily-background.bg-loaded::before {
+    opacity: 1; /* Fade to visible */
+}
+/* === End of Background Image Blur & Transition Enhancements === */
+[end of NewTheme/style.css]
