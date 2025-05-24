@@ -75,7 +75,10 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
                 <?php endif; ?>
                 <div class="post-item-content">
                     <h3 class="post-item-title" itemprop="name headline"><a accesskey="3" itemprop="url" href="<?php $categoryPosts->permalink() ?>"><?php $categoryPosts->title() ?></a></h3>
-                    <span class="post-item-date"><time datetime="<?php $categoryPosts->date('c'); ?>" itemprop="datePublished"><?php $categoryPosts->date('Y-m-d'); ?></time></span>
+                    <span class="post-item-date">
+                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-date"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        <time datetime="<?php $categoryPosts->date('c'); ?>" itemprop="datePublished"><?php $categoryPosts->date('Y-m-d'); ?></time>
+                    </span>
                     <?php // Optional: Add excerpt here if desired for index page ?>
                     <?php // <div itemprop="articleBody"> $categoryPosts->excerpt(70, '...'); </div> ?>
                 </div>

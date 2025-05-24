@@ -6,7 +6,7 @@
             <?php echo _t('该主题基于 '); ?><a href="http://www.staraudio.net/" target="_blank" rel="nofollow external"><?php echo _t('星之音'); ?></a><?php echo sprintf(_t(' 的主题通过AI二次开发后形成，by %s'), '<a href="https://typecho.org" target="_blank" rel="nofollow external">Typecho</a>'); ?>
         </div>
         <div class="icp-info">
-            <a href="https://beian.miit.gov.cn/" target="_blank" rel="nofollow external">京ICP备 2010012111-2号</a>
+            <a href="https://beian.miit.gov.cn/" target="_blank" rel="nofollow external">宁ICP备 2022000156号</a>
         </div>
   </div>
 </div>

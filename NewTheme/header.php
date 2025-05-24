@@ -122,15 +122,21 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <div id="main-navigation" class="main-navigation"> <?php // Wrapper for nav links ?>
+        <div id="main-navigation" class="main-navigation" aria-hidden="true"> <?php // Wrapper for nav links ?>
             <a <?php if($this->is('index')): ?>class="current" aria-current="page"<?php endif; ?> href="<?php $this->options->siteUrl(); ?>"><?php echo _t('首页'); ?></a> <?php // Hardcode Chinese ?>
             <?php \Widget\Metas\Category\Rows::alloc()->to($categories); ?>
             <?php while($categories->next()): ?>
-            <a <?php if($this->is('category',$categories->slug)): ?>class="current" aria-current="page"<?php endif; ?> href="<?php $categories->permalink(); ?>"><?php $categories->name(); ?></a>
+            <a <?php if($this->is('category',$categories->slug)): ?>class="current" aria-current="page"<?php endif; ?> href="<?php $categories->permalink(); ?>">
+                <svg viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-nav-item"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                <?php $categories->name(); ?>
+            </a>
             <?php endwhile; ?>
             <?php \Widget\Contents\Page\Rows::alloc()->to($pages); ?>
             <?php while($pages->next()): ?>
-            <a <?php if($this->is('page',$pages->slug)): ?>class="current" aria-current="page"<?php endif; ?> href="<?php $pages->permalink(); ?>"><?php $pages->title(); ?></a>
+            <a <?php if($this->is('page',$pages->slug)): ?>class="current" aria-current="page"<?php endif; ?> href="<?php $pages->permalink(); ?>">
+                <svg viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-nav-item"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                <?php $pages->title(); ?>
+            </a>
             <?php endwhile; ?>
         </div>
     </nav>

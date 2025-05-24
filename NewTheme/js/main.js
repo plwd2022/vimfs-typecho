@@ -129,13 +129,11 @@ function setupDailyBackgroundImage() {
         const img = new Image();
         img.onload = function() {
             document.body.style.backgroundImage = 'url(' + imageUrl + ')';
-            // Optional: Apply other background styles here if not handled by CSS
-            document.body.style.backgroundSize = 'cover';
-            document.body.style.backgroundPosition = 'center center';
-            document.body.style.backgroundAttachment = 'fixed'; // Fixed can be performance intensive
+            document.body.classList.add('with-daily-background');
         };
         img.onerror = function() {
             console.error('Error loading background image:', imageUrl);
+            document.body.classList.remove('with-daily-background'); // Optional: remove class on error
         };
         img.src = imageUrl;
     }
@@ -146,11 +144,18 @@ function setupMobileMenu() {
     var mainNav = document.getElementById('main-navigation');
 
     if (menuToggle && mainNav) {
+        // Set initial aria-hidden state based on aria-expanded, if not already set in HTML
+        // This ensures consistency if JS loads after HTML is partially parsed.
+        // However, the primary fix is adding aria-hidden="true" in the HTML.
+        // mainNav.setAttribute('aria-hidden', menuToggle.getAttribute('aria-expanded') !== 'true');
+
+
         menuToggle.addEventListener('click', function() {
             var isExpanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
             var newExpandedState = !isExpanded;
             menuToggle.setAttribute('aria-expanded', newExpandedState);
             mainNav.classList.toggle('nav-open');
+            mainNav.setAttribute('aria-hidden', !newExpandedState); // Toggle aria-hidden
             menuToggle.classList.toggle('active'); // Optional for styling the button
 
             if (newExpandedState) { // Menu is now open

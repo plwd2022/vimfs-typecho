@@ -559,4 +559,81 @@ a.button:active,
     box-shadow: inset 0 1px 2px rgba(0,0,0,0.1); 
     /* transform: translateY(1px); */ 
 }
-[end of NewTheme/style.css]
+
+/* === Appended Styles for New Features === */
+
+/* Skip to Main Content Link */
+.skip-to-main-content-link {
+    position: absolute;
+    left: -9999px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    z-index: -999;
+}
+.skip-to-main-content-link:focus,
+.skip-to-main-content-link:active {
+    position: fixed; /* Changed from absolute to ensure visibility even on scrolled pages */
+    top: 10px;
+    left: 10px;
+    width: auto;
+    height: auto;
+    padding: 10px 15px;
+    overflow: auto;
+    background-color: var(--bg-color-button, #007bff);
+    color: var(--text-color-on-dark, #ffffff);
+    border: 1px solid var(--border-color-dark, #cccccc);
+    border-radius: var(--border-radius-base, 3px);
+    text-decoration: none;
+    z-index: 99999;
+    font-weight: var(--font-weight-medium, 500);
+}
+
+/* Daily Background Image Styling */
+/* body.with-daily-background class will be added by JS when image loads */
+body.with-daily-background {
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed; /* Optional: creates a parallax-like effect */
+    /* Consider adding a subtle transition if you like */
+    /* transition: background-image 1s ease-in-out; */
+}
+/* A default body background should already be set, this is just a placeholder reminder */
+/* body { background-color: var(--bg-color-body); } */
+
+
+/* SVG Icon Styling */
+.icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.125em; /* Fine-tune for better alignment with text */
+    margin-right: 0.3em;
+    stroke-width: 2;
+    stroke: currentColor; /* Default: inherits text color */
+    fill: none;
+}
+
+/* Example: Adjust color for icons in muted text contexts */
+.entry-meta .icon,
+.post-item-date .icon { /* Added .post-item-date .icon for homepage dates */
+    color: var(--text-color-muted, #777777); /* Match surrounding text or be distinct */
+}
+
+/* Example: Slightly larger icons for widget titles if desired */
+.widget-title .icon {
+    width: 1.1em;
+    height: 1.1em;
+    margin-right: 0.4em;
+}
+
+/* Example: Styling for navigation icons */
+.main-navigation a .icon-nav-item { /* Target icons specifically within nav links */
+    width: 0.9em;
+    height: 0.9em;
+    margin-right: 0.5em;
+    vertical-align: -0.05em; /* May need adjustment */
+}
+
+/* === End of Appended Styles === */
