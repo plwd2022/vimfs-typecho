@@ -20,6 +20,7 @@
     --bg-color-nav-hover: #555555;
     --bg-color-button: var(--primary-color);
     --bg-color-button-hover: var(--primary-color-hover);
+    --bg-color-button-active: #004085; /* Darker for active state */
     --bg-color-subtle: #e9ecef; 
     --bg-color-widget: #ffffff; 
     
@@ -154,6 +155,15 @@ ul, ol { list-style: none; }
     color: var(--text-color-muted-on-dark); 
     margin-top: var(--space-xs); 
 }
+.icp-info a { /* Style for ICP link */
+    color: inherit;
+    text-decoration: none;
+}
+.icp-info a:hover {
+    text-decoration: underline;
+    color: var(--text-color-on-dark);
+}
+
 
 /* Typography - General & Headings */
 h1, h2, h3, h4, h5, h6 {
@@ -205,10 +215,22 @@ a:hover {
 button, .submit, input[type="submit"], .button, a.button, #close-hotkey-modal { 
     font-weight: var(--font-weight-medium);
     font-size: var(--font-size-base); 
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
-.comment-reply a { /* Specific button-like link */
+.comment-reply a { 
     font-weight: var(--font-weight-medium);
 }
+button:active, 
+.submit:active, 
+input[type="submit"]:active, 
+.button:active, 
+a.button:active,
+#close-hotkey-modal:active {
+    background-color: var(--bg-color-button-active); 
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.1); 
+}
+
 
 /* Header Elements - Typography */
 #header .site-title a { font-weight: var(--font-weight-bold); }
@@ -216,7 +238,7 @@ button, .submit, input[type="submit"], .button, a.button, #close-hotkey-modal {
 .user-status-links { font-size: var(--font-size-small); }
 .user-status-links a { font-weight: var(--font-weight-normal); }
 .header-date-display, .item-meta, .comment-meta, .post-item-date {
-    font-size: var(--font-size-xsmall); /* Made these smaller */
+    font-size: var(--font-size-xsmall); 
     color: var(--text-color-muted); 
     line-height: 1.5;
 }
@@ -240,9 +262,9 @@ button, .submit, input[type="submit"], .button, a.button, #close-hotkey-modal {
 /* Sidebar Widgets - Typography */
 .widget .widget-title {
     margin-top: 0; margin-bottom: var(--space-lg); padding-bottom: var(--space-md);
-    border-bottom: 1px solid var(--border-color-extralight); /* Softened */
+    border-bottom: 1px solid var(--border-color-extralight); 
 }
-.widget .widget-list li { padding: 8px 0; border-bottom: 1px dotted var(--border-color-extralight); font-size: var(--font-size-small); } /* Softened */
+.widget .widget-list li { padding: 8px 0; border-bottom: 1px dotted var(--border-color-extralight); font-size: var(--font-size-small); } 
 
 /* Comments - Typography */
 .comment-author cite { font-weight: var(--font-weight-bold); font-style: normal; color: var(--text-color-base); }
@@ -251,7 +273,7 @@ button, .submit, input[type="submit"], .button, a.button, #close-hotkey-modal {
 #comment-form .submit { font-weight: var(--font-weight-medium); font-size: var(--font-size-large); }
 .comments-title, .respond-title { 
     margin-top: 0; margin-bottom: 25px; padding-bottom: var(--space-md);
-    border-bottom: 1px solid var(--border-color-light); /* Softened */
+    border-bottom: 1px solid var(--border-color-light); 
 }
 
 /* Specific list item titles in index/archive */
@@ -359,26 +381,26 @@ button, .submit, input[type="submit"], .button, a.button, #close-hotkey-modal {
 
 .category-section {
     margin-bottom: var(--space-xl); padding: var(--space-md); 
-    border: 1px solid var(--border-color-extralight); /* Softened */
+    border: 1px solid var(--border-color-extralight); 
     border-radius: var(--border-radius-base); background-color: var(--bg-color-content);
-    box-shadow: var(--box-shadow-base); /* Added soft shadow */
+    box-shadow: var(--box-shadow-base); 
 }
 .category-section .widget-title { 
     margin-top: 0; margin-bottom: var(--space-md); padding-bottom: var(--space-sm);
     border-bottom: 2px solid var(--primary-color); color: var(--text-color-base);
 }
-.widget-index-list li { padding: var(--space-sm) 0; border-bottom: 1px dotted var(--border-color-light); } /* Softened */
+.widget-index-list li { padding: var(--space-sm) 0; border-bottom: 1px dotted var(--border-color-light); } 
 .widget-index-list li .post-item-date { }
 
 /* Post and Page Entry Styles */
 .post-entry, .page-entry { 
     padding: var(--space-xl); margin-bottom: 35px; 
     background-color: var(--bg-color-content); 
-    border: 1px solid var(--border-color-extralight); /* Softened */
+    border: 1px solid var(--border-color-extralight); 
     border-radius: var(--border-radius-base); 
-    box-shadow: var(--box-shadow-base); /* Added soft shadow */
+    box-shadow: var(--box-shadow-base); 
 }
-.entry-header { margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid var(--border-color-extralight); } /* Softened */
+.entry-header { margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid var(--border-color-extralight); } 
 .entry-title { margin-bottom: var(--space-md); } 
 .entry-meta { margin-bottom: var(--space-lg); }
 .entry-meta a { color: var(--text-color-muted); }
@@ -390,7 +412,7 @@ button, .submit, input[type="submit"], .button, a.button, #close-hotkey-modal {
 .entry-content ul { list-style: disc; } .entry-content ol { list-style: decimal; }
 .entry-content li { margin-bottom: 0.5em; }
 
-.entry-footer { margin-top: 25px; padding-top: 20px; border-top: 1px solid var(--border-color-extralight); } /* Softened */
+.entry-footer { margin-top: 25px; padding-top: 20px; border-top: 1px solid var(--border-color-extralight); } 
 .post-tags { margin-bottom: var(--space-md); }
 .post-tags a { display: inline-block; background-color: var(--bg-color-subtle); padding: 3px 8px; margin-right: 5px; border-radius: var(--border-radius-base); color: var(--text-color-base); }
 .post-tags a:hover { background-color: var(--primary-color); color: var(--text-color-on-dark); text-decoration: none; }
@@ -403,26 +425,26 @@ button, .submit, input[type="submit"], .button, a.button, #close-hotkey-modal {
 .related-posts { 
     margin-top: 35px; padding: 25px; 
     background-color: var(--bg-color-subtle); 
-    border: 1px solid var(--border-color-extralight); /* Softened */
+    border: 1px solid var(--border-color-extralight); 
     border-radius: var(--border-radius-base); 
-    box-shadow: var(--box-shadow-base); /* Added soft shadow */
+    box-shadow: var(--box-shadow-base); 
 }
 .related-posts .section-title { 
     margin-top: 0; margin-bottom: 15px; padding-bottom: 10px;
-    border-bottom: 1px solid var(--border-color-light); color: var(--text-color-base); /* Softened */
+    border-bottom: 1px solid var(--border-color-light); color: var(--text-color-base); 
 }
 .related-posts .widget-list li span { }
 
 /* Archive Page Styles */
 .archive-page { 
     padding: var(--space-xl); background-color: var(--bg-color-content); 
-    border: 1px solid var(--border-color-extralight); /* Softened */
+    border: 1px solid var(--border-color-extralight); 
     border-radius: var(--border-radius-base); 
-    box-shadow: var(--box-shadow-base); /* Added soft shadow */
+    box-shadow: var(--box-shadow-base); 
 }
-.archive-header { margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid var(--border-color-extralight); } /* Softened */
+.archive-header { margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid var(--border-color-extralight); } 
 .archive-title { margin-top: 0; margin-bottom: 0; } 
-.post-list-item { padding: var(--space-lg) 0; border-bottom: 1px dotted var(--border-color-light); } /* Softened */
+.post-list-item { padding: var(--space-lg) 0; border-bottom: 1px dotted var(--border-color-light); } 
 .post-list-item .item-header { margin-bottom: 12px; }
 .item-title { 
     margin-top: 0; margin-bottom: 8px; 
@@ -437,31 +459,31 @@ button, .submit, input[type="submit"], .button, a.button, #close-hotkey-modal {
 .widget { 
     padding: var(--space-lg); margin-bottom: 25px; 
     background-color: var(--bg-color-widget); 
-    border: 1px solid var(--border-color-extralight); /* Softened */
+    border: 1px solid var(--border-color-extralight); 
     border-radius: var(--border-radius-base); 
     box-shadow: var(--box-shadow-base); 
 }
 .widget .widget-title { 
     margin-top: 0; margin-bottom: var(--space-lg); padding-bottom: var(--space-md);
-    border-bottom: 1px solid var(--border-color-extralight); /* Softened */
+    border-bottom: 1px solid var(--border-color-extralight); 
 }
-.widget .widget-list li { padding: 8px 0; border-bottom: 1px dotted var(--border-color-extralight); } /* Softened */
+.widget .widget-list li { padding: 8px 0; border-bottom: 1px dotted var(--border-color-extralight); } 
 
 /* Comments Section Styles */
 #comments-section { 
     margin-top: 35px; padding: 25px; 
     background-color: var(--bg-color-content); 
-    border: 1px solid var(--border-color-extralight); /* Softened */
+    border: 1px solid var(--border-color-extralight); 
     border-radius: var(--border-radius-base); 
-    box-shadow: var(--box-shadow-base); /* Added soft shadow */
+    box-shadow: var(--box-shadow-base); 
 }
 .comments-title, .respond-title { 
     margin-top: 0; margin-bottom: 25px; padding-bottom: var(--space-md);
-    border-bottom: 1px solid var(--border-color-light); /* Softened */
+    border-bottom: 1px solid var(--border-color-light); 
 }
 .comment-list li { 
     padding: var(--space-lg); margin-bottom: var(--space-lg); 
-    border: 1px solid var(--border-color-extralight); /* Softened */
+    border: 1px solid var(--border-color-extralight); 
     border-radius: var(--border-radius-base); 
     background-color: var(--bg-color-subtle); 
 }
@@ -474,18 +496,28 @@ button, .submit, input[type="submit"], .button, a.button, #close-hotkey-modal {
 .respond { 
     padding: 25px; margin-top: 25px; 
     background-color: var(--bg-color-subtle); 
-    border: 1px solid var(--border-color-extralight); /* Softened */
+    border: 1px solid var(--border-color-extralight); 
     border-radius: var(--border-radius-base); 
 }
 #comment-form p { margin-bottom: 18px; }
 #comment-form label { margin-bottom: 6px; } 
+/*
+#comment-form input[type="text"]:focus,
+#comment-form input[type="email"]:focus,
+#comment-form input[type="url"]:focus,
+#comment-form textarea:focus {
+    border-color: var(--primary-color); 
+    outline: none; 
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.25); 
+}
+*/
 #comment-form .submit { }
 
 /* Modals (Hotkey Help) */
 .hotkey-modal { 
     padding: 25px; 
     border: 1px solid var(--border-color-dark); 
-    box-shadow: var(--box-shadow-soft); /* Updated */
+    box-shadow: var(--box-shadow-soft); 
     border-radius: var(--border-radius-base); 
 }
 .hotkey-modal-content h3 { 
@@ -500,7 +532,7 @@ button, .submit, input[type="submit"], .button, a.button, #close-hotkey-modal {
 a:focus, button:focus, input[type="text"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="password"]:focus, textarea:focus, select:focus, [tabindex]:focus { 
     outline: 2px solid var(--primary-color-hover); 
     outline-offset: 2px; 
-    box-shadow: var(--box-shadow-interactive); /* Use interactive shadow */
+    box-shadow: var(--box-shadow-interactive); 
 }
 
 /* Thumbnail styles */
@@ -516,4 +548,15 @@ a:focus, button:focus, input[type="text"]:focus, input[type="email"]:focus, inpu
 }
 @media (min-width: 576px) { .post-item-with-thumbnail { flex-direction: row; gap: var(--space-lg); } .post-item-thumbnail { flex: 0 0 150px; margin-bottom: 0; } .post-item-content { flex: 1; } }
 
+/* Appended: Button Active State Feedback */
+button:active, 
+.submit:active, 
+input[type="submit"]:active, 
+.button:active, 
+a.button:active,
+#close-hotkey-modal:active { /* Added #close-hotkey-modal here for consistency */
+    background-color: var(--bg-color-button-active); 
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.1); 
+    /* transform: translateY(1px); */ 
+}
 [end of NewTheme/style.css]

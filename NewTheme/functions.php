@@ -9,6 +9,15 @@ function themeConfig($form) {
   'ShowArchive' => '文章归档'),
   array('ShowRecentPosts', 'ShowRecentComments', 'ShowCategory', 'ShowArchive'), '侧边栏显示');
   $form->addInput($sidebarBlock->multiMode());
+
+  $defaultOgpImage = new Typecho_Widget_Helper_Form_Element_Text(
+      'defaultOgpImage',
+      NULL,
+      NULL,
+      '默认OGP分享图片URL', 
+      '设置一个默认的图片URL，用于文章/页面没有指定缩略图时，在社交媒体上分享时显示。建议尺寸1200x630像素。'
+  );
+  $form->addInput($defaultOgpImage);
 }
 
 /**

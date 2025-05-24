@@ -6,15 +6,18 @@ function setupHotkeyModal() {
     var hotkeyHelpTrigger = document.getElementById('hotkey-help-trigger');
     var hotkeyHelpModal = document.getElementById('hotkey-help-modal');
     var closeHotkeyModal = document.getElementById('close-hotkey-modal');
+    var hotkeyModalStatus = document.getElementById('hotkey-modal-status'); // New
 
-    if (hotkeyHelpTrigger && hotkeyHelpModal && closeHotkeyModal) {
+    if (hotkeyHelpTrigger && hotkeyHelpModal && closeHotkeyModal && hotkeyModalStatus) {
         // Event listener to open the modal
         hotkeyHelpTrigger.addEventListener('click', function(e) {
             e.preventDefault();
             hotkeyHelpModal.style.display = 'block';
             hotkeyHelpModal.setAttribute('aria-hidden', 'false');
-            hotkeyHelpModal.setAttribute('aria-live', 'assertive'); 
+            // hotkeyHelpModal.setAttribute('aria-live', 'assertive'); // REMOVED
             
+            hotkeyModalStatus.textContent = '键盘快捷键帮助已显示'; // "Hotkey help displayed"
+
             requestAnimationFrame(function() {
                 closeHotkeyModal.focus();
             });
@@ -24,7 +27,8 @@ function setupHotkeyModal() {
         closeHotkeyModal.addEventListener('click', function() {
             hotkeyHelpModal.style.display = 'none';
             hotkeyHelpModal.setAttribute('aria-hidden', 'true');
-            hotkeyHelpModal.removeAttribute('aria-live'); 
+            // hotkeyHelpModal.removeAttribute('aria-live'); // REMOVED
+            hotkeyModalStatus.textContent = ''; // Clear status text
             hotkeyHelpTrigger.focus(); 
         });
 
@@ -33,7 +37,8 @@ function setupHotkeyModal() {
             if (e.key === 'Escape' || e.keyCode === 27) {
                 hotkeyHelpModal.style.display = 'none';
                 hotkeyHelpModal.setAttribute('aria-hidden', 'true');
-                hotkeyHelpModal.removeAttribute('aria-live'); 
+                // hotkeyHelpModal.removeAttribute('aria-live'); // REMOVED
+                hotkeyModalStatus.textContent = ''; // Clear status text
                 hotkeyHelpTrigger.focus();
             }
         });

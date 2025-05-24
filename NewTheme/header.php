@@ -32,8 +32,45 @@
   <?php if($this->is('post') || $this->is('page')): ?><link rel="canonical" href="<?php $this->permalink(); ?>" /><?php endif; ?>
   <meta name="description" content="<?php echo $this->_description; if($this->is('index')): _e(','); $this->options->title(); _e('网站首页'); else: _e(','); echo $this->options->description(); endif; ?>">
   <meta name="keywords" content="<?php echo $this->_keywords; if($this->is('index')): _e(','); $this->options->title(); _e('网站首页'); else: _e(','); echo $this->options->description(); endif; ?>">
+
+    <?php // Open Graph and Twitter Card Meta Tags ?>
+    <?php if ($this->is('single')): // For single posts or pages ?>
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="<?php $this->title(); ?>" />
+        <meta property="og:url" content="<?php $this->permalink(); ?>" />
+        <meta property="og:description" content="<?php $this->excerpt(150, '...'); ?>" />
+        <?php if ($this->fields->post_thumbnail): ?>
+            <meta property="og:image" content="<?php $this->fields->post_thumbnail(); ?>" />
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:image" content="<?php $this->fields->post_thumbnail(); ?>" />
+        <?php elseif ($this->options->defaultOgpImage): ?>
+            <meta property="og:image" content="<?php $this->options->defaultOgpImage(); ?>" />
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:image" content="<?php $this->options->defaultOgpImage(); ?>" />
+        <?php else: ?>
+            <meta name="twitter:card" content="summary" />
+        <?php endif; ?>
+    <?php else: // For homepage, archives, etc. ?>
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="<?php $this->options->title(); ?><?php if($this->is('archive')) $this->archiveTitle(array('category'=>'%s','search'=>'%s','tag'=>'%s','author'=>'%s'), '', ' - '); ?>" />
+        <meta property="og:url" content="<?php $this->options->siteUrl(); ?><?php if($this->is('archive')) echo $this->request->getRequestUri(); // More robust archive URL ?>" />
+        <meta property="og:description" content="<?php $this->options->description(); ?>" />
+        <?php if ($this->options->defaultOgpImage): ?>
+            <meta property="og:image" content="<?php $this->options->defaultOgpImage(); ?>" />
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:image" content="<?php $this->options->defaultOgpImage(); ?>" />
+        <?php else: ?>
+            <meta name="twitter:card" content="summary" />
+        <?php endif; ?>
+    <?php endif; ?>
+    <meta property="og:site_name" content="<?php $this->options->title(); ?>" />
+    <?php // Common Twitter tags (can use og:title and og:description by default if not specified) ?>
+    <meta name="twitter:title" content="<?php if($this->is('single')) $this->title(); else $this->options->title(); ?><?php if($this->is('archive') && !$this->is('single')) $this->archiveTitle(array('category'=>'%s','search'=>'%s','tag'=>'%s','author'=>'%s'), '', ' - '); ?>" />
+    <meta name="twitter:description" content="<?php if($this->is('single')) $this->excerpt(150, '...'); else $this->options->description(); ?>" />
+    <?php // Optional: Add <meta name="twitter:site" content="@YourTwitterHandle" /> if you have one ?>
+
 </head>
-<body>
+<body <?php $this->bodyClass(); ?>>
 <!--[if lt IE 8]>
   <div class="eeyinfo">当前浏览器过旧，为了更好的体验，请升级到更新的浏览器。</div>
 <![endif]-->
@@ -96,6 +133,7 @@
 
 <div id="hotkey-help-modal" class="hotkey-modal" style="display:none;" role="dialog" aria-labelledby="hotkey-modal-title" aria-hidden="true">
     <div class="hotkey-modal-content">
+        <span id="hotkey-modal-status" class="visually-hidden-focusable" aria-live="assertive" aria-atomic="true"></span>
         <h3 id="hotkey-modal-title">键盘快捷键</h3>
         <p>导航操作：</p>
         <ul>
