@@ -15,23 +15,23 @@
       <?php else: ?>
       <p>
         <label for="author" class="required"><?php echo _t('昵称'); ?></label>
-        <input type="text" name="author" id="author" class="text" value="<?php $this->remember('author'); ?>" required />
+        <input type="text" name="author" id="author" class="text" value="<?php $this->remember('author'); ?>" required aria-required="true" />
       </p>
       <p>
         <label for="mail"<?php if ($this->options->commentsRequireMail): ?> class="required"<?php endif; ?>><?php echo _t('邮箱'); ?></label>
-        <input type="email" name="mail" id="mail" class="text" value="<?php $this->remember('mail'); ?>"<?php if ($this->options->commentsRequireMail): ?> required<?php endif; ?> />
+        <input type="email" name="mail" id="mail" class="text" value="<?php $this->remember('mail'); ?>"<?php if ($this->options->commentsRequireMail): ?> required aria-required="true"<?php endif; ?> />
       </p>
       <p>
         <label for="url"<?php if ($this->options->commentsRequireURL): ?> class="required"<?php endif; ?>><?php echo _t('网站'); ?></label>
-        <input type="url" name="url" id="url" class="text" placeholder="<?php echo _t('http://'); ?>" value="<?php $this->remember('url'); ?>"<?php if ($this->options->commentsRequireURL): ?> required<?php endif; ?> />
+        <input type="url" name="url" id="url" class="text" placeholder="<?php echo _t('http://'); ?>" value="<?php $this->remember('url'); ?>"<?php if ($this->options->commentsRequireURL): ?> required aria-required="true"<?php endif; ?> />
       </p>
       <?php endif; ?>
       <p>
         <label for="textarea" class="required"><?php echo _t('内容'); ?></label>
-        <textarea rows="8" cols="50" name="text" id="textarea" class="textarea" required ><?php $this->remember('text'); ?></textarea>
+        <textarea rows="8" cols="50" name="text" id="textarea" class="textarea" required aria-required="true" ><?php $this->remember('text'); ?></textarea>
       </p>
       <p>
-        <span role="notify" tabindex="0"><?php echo _t('评论后，评论信息处于待审核状态，稍后我们会做出回复。'); ?></span>
+        <span><?php echo _t('评论后，评论信息处于待审核状态，稍后我们会做出回复。'); ?></span>
       </p>
       <p>
         <button type="submit" class="submit"><?php echo _t('提交评论'); ?></button>

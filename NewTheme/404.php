@@ -7,7 +7,10 @@
         <p><?php echo _t('抱歉，您要查看的页面已被转移或不存在！也许可以试试搜索？'); ?></p>
     </div>
     <form method="post" action="<?php $this->options->siteUrl(); ?>" role="search"> <?php // Added siteUrl action and role ?>
-        <p><input type="text" name="s" class="text" autofocus /></p>
+        <p>
+            <label for="s-404" class="sr-only"><?php echo _t('搜索关键字'); ?></label>
+            <input type="text" name="s" id="s-404" class="text" autofocus />
+        </p>
         <p><button type="submit" class="submit"><?php echo _t('搜索'); ?></button></p>
     </form>
   </div>

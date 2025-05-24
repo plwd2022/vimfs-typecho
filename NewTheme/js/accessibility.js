@@ -20,42 +20,53 @@
     });
   }
   function toFocus(focusSelector, op) {
-    let els = document.all; // Note: document.all is non-standard, consider document.querySelectorAll(focusSelector)
+    let focusableElements = document.querySelectorAll(focusSelector);
+    if (focusableElements.length === 0) {
+        return; 
+    }
+
+    let els = Array.from(focusableElements); // Convert NodeList to Array
     let len = els.length;
     let ae = document.activeElement;
-    let aeIndex = 0,
-    index = 0;
-    for (let i = 0; i < len; i++) {
-      if (els[i] == ae) {
-        aeIndex = index = i;
-        break;
-      }
+    let currentIndex = -1;
+
+    if (ae) {
+        currentIndex = els.indexOf(ae);
     }
-    let i = op == '+' ? index + 1 : index - 1;
-    while (i != aeIndex) {
-      // Consider using a more specific selector if possible, or ensure focusSelector is robust
-      if (els[i].matches(focusSelector) && isVisible(els[i])) {
-        index = i;
-        break;
-      }
-      i = op == '+' ? i + 1 : i - 1;
-      if (i >= len) {
-        i = 0;
-      }
-      if (i < 0) {
-        i = len - 1;
-      }
-    }
-    let el = els[index];
-    if (el) { // Ensure el exists
-        let tagName = el.tagName.toLowerCase();
-        let pels = ['div', 'p', 'span', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'ul', 'ol', 'li', 'form', 'img', 'nav', 'header', 'main', 'footer', 'section', 'aside'];
-        if (pels.includes(tagName) || (tagName == 'a' && !el.hasAttribute('href'))) {
-          if (!el.hasAttribute('tabindex')) {
-            el.setAttribute('tabindex', '-1');
-          }
+
+    let nextElementIndex;
+    if (currentIndex === -1) { // If current active element is not in our list or no ae
+        nextElementIndex = (op === '+') ? 0 : len - 1;
+    } else {
+        if (op === '+') {
+            nextElementIndex = (currentIndex + 1) % len;
+        } else {
+            nextElementIndex = (currentIndex - 1 + len) % len;
         }
-        el.focus();
+    }
+    
+    for (let i = 0; i < len; i++) { // Iterate through all elements once
+        let potentialEl = els[nextElementIndex];
+        if (isVisible(potentialEl)) {
+            let tagName = potentialEl.tagName.toLowerCase();
+            // These are the types of elements that might need tabindex="-1" to be focusable
+            let nonNaturallyFocusable = ['div', 'p', 'span', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'ul', 'ol', 'li', 'form', 'img', 'nav', 'header', 'main', 'footer', 'section', 'aside'];
+            
+            if (nonNaturallyFocusable.includes(tagName) || (tagName === 'a' && !potentialEl.hasAttribute('href'))) {
+                if (!potentialEl.hasAttribute('tabindex')) {
+                    potentialEl.setAttribute('tabindex', '-1');
+                }
+            }
+            potentialEl.focus();
+            return; // Element focused, exit
+        }
+
+        // Move to the next element index for the next iteration
+        if (op === '+') {
+            nextElementIndex = (nextElementIndex + 1) % len;
+        } else {
+            nextElementIndex = (nextElementIndex - 1 + len) % len;
+        }
     }
   }
 

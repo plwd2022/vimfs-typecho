@@ -74,11 +74,12 @@
 
 </head>
 <body <?php $this->bodyClass(); ?>>
+<a href="#main" class="skip-to-main-content-link"><?php echo _t('跳转到主要内容'); ?></a>
 <!--[if lt IE 8]>
   <div class="eeyinfo"><?php echo _t('当前浏览器过旧，为了更好的体验，请升级到更新的浏览器。'); ?></div>
 <![endif]-->
 
-<div id="header" class="container">
+<header id="header" class="container" role="banner">
     <div class="site-branding"> <?php // Wrap logo/title ?>
         <span>
             <a class="navbar-brand" href="<?php $this->options->siteUrl(); ?>">
@@ -113,9 +114,9 @@
     <div class="header-date-display">
          <?php echo date(_t('Y年m月d日')); ?> <?php $weekarray=array(_t("日"),_t("一"),_t("二"),_t("三"),_t("四"),_t("五"),_t("六")); echo _t("星期").$weekarray[date("w")]; ?>
     </div>
-</div> <?php // End of #header .container ?>
+</header> <?php // End of #header .container ?>
 
-  <div id="nav" class="container">
+  <nav id="nav" class="container" role="navigation" aria-label="<?php echo _t('主导航'); ?>">
         <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-expanded="false" aria-controls="main-navigation" aria-label="<?php echo _t('主导航菜单'); ?>"> <?php // Hardcode Chinese for aria-label ?>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -132,7 +133,7 @@
             <a <?php if($this->is('page',$pages->slug)): ?>class="current" aria-current="page"<?php endif; ?> href="<?php $pages->permalink(); ?>"><?php $pages->title(); ?></a>
             <?php endwhile; ?>
         </div>
-    </div>
+    </nav>
 
 <div id="hotkey-help-modal" class="hotkey-modal" style="display:none;" role="dialog" aria-labelledby="hotkey-modal-title" aria-hidden="true">
     <div class="hotkey-modal-content">
