@@ -9,7 +9,7 @@
   <div id="<?php $this->respondId(); ?>" class="respond">
     <div class="cancel-comment-reply"><?php $comments->cancelReply(); ?></div>
     <h2 class="widget-title" id="response" accesskey="z" tabindex="0"><?php echo _t('添加新评论'); ?></h2>
-    <form method="post" action="<?php $this->commentUrl() ?>" id="comment-form">
+    <form method="post" action="<?php $this->commentUrl() ?>" id="comment-form" role="form">
       <?php if($this->user->hasLogin()): ?>
       <p><?php echo _t('当前登录用户：'); ?><a href="<?php $this->options->profileUrl(); ?>"><?php $this->user->screenName(); ?></a> <a href="<?php $this->options->logoutUrl(); ?>" title="<?php echo _t('退出登录'); ?>"><?php echo _t('退出'); ?></a></p>
       <?php else: ?>
@@ -39,4 +39,5 @@
     </form>
   </div>
   <?php else: ?>
+  <h3><?php echo _t('评论已关闭'); ?></h3>
   <?php endif; ?>

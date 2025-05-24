@@ -17,6 +17,8 @@
     endif;
     ?></title>
   <!-- 使用url函数转换相关路径 -->
+  <link rel="stylesheet" href="<?php $this->options->themeUrl('normalize.css'); ?>">
+  <link rel="stylesheet" href="<?php $this->options->themeUrl('grid.css'); ?>">
   <!-- <link rel="stylesheet" href="<?php $this->options->adminUrl('css/normalize.css'); ?>"> -->
   <!-- <link rel="stylesheet" href="<?php $this->options->adminUrl('css/grid.css'); ?>"> -->
   <link rel="stylesheet" href="<?php $this->options->themeUrl('style.css'); ?>">
@@ -121,11 +123,11 @@
         </button>
         <div id="main-navigation" class="main-navigation"> <?php // Wrapper for nav links ?>
             <a <?php if($this->is('index')): ?>class="current" aria-current="page"<?php endif; ?> href="<?php $this->options->siteUrl(); ?>"><?php echo _t('首页'); ?></a> <?php // Hardcode Chinese ?>
-            <?php $this->widget('Widget_Metas_Category_List')->to($categories); ?>
+            <?php \Widget\Metas\Category\Rows::alloc()->to($categories); ?>
             <?php while($categories->next()): ?>
             <a <?php if($this->is('category',$categories->slug)): ?>class="current" aria-current="page"<?php endif; ?> href="<?php $categories->permalink(); ?>"><?php $categories->name(); ?></a>
             <?php endwhile; ?>
-            <?php $this->widget('Widget_Contents_Page_List')->to($pages); ?>
+            <?php \Widget\Contents\Page\Rows::alloc()->to($pages); ?>
             <?php while($pages->next()): ?>
             <a <?php if($this->is('page',$pages->slug)): ?>class="current" aria-current="page"<?php endif; ?> href="<?php $pages->permalink(); ?>"><?php $pages->title(); ?></a>
             <?php endwhile; ?>
@@ -167,26 +169,5 @@
         // Search and date are now in the main #header.
   ?>
   
-	<div class="here">
-    <?php echo _t('当前位置：'); ?>
-    <a href="<?php $this->options->siteUrl(); ?>"><?php echo _t('首页'); ?></a> ·
-    <?php if ($this->is('index')): ?>
-    <?php elseif ($this->is('post')): ?>
-    <?php $this->category(); ?> ·
-	<?php $this->title() ?>
-    <?php else: ?>
-    <?php $this->archiveTitle(' · ','',''); ?>
-    <?php endif; ?>
-  </div>
-  <div class="description">
-    <?php
-      if($this->is('category')):
-        echo $this->getDescription();
-      else:
-        echo $this->options->description();
-      endif;
-    ?>
-  </div>
-
 <!-- Removed a <div> that seemed to be an extra closing tag before site-content wrapper was added -->
 <!-- The site-content div should wrap main and rightbar, and then footer comes after site-content -->
