@@ -3,7 +3,7 @@
   <?php $this->comments()->to($comments); ?>
   <?php if ($comments->have()): ?>
   <h2 class="widget-title" accesskey="z" tabindex="0"><?php $this->commentsNum(_t('暂无评论'), _t('仅有 1 条评论'), _t('已有 %d 条评论')); ?></h2>
-  <?php $comments->listComments(); ?>
+  <?php $comments->listComments(array('replyClass' => 'comment-reply', 'commentClass' => 'comment-body')); ?>
   <?php $comments->pageNav(_t('&laquo; 前一页'), _t('后一页 &raquo;')); ?>
   <?php endif; ?>
   <?php if($this->allow('comment')): ?>
