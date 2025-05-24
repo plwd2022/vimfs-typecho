@@ -128,7 +128,11 @@ function setupDailyBackgroundImage() {
     function applyBackground(imageUrl) {
         const img = new Image();
         img.onload = function() {
-            document.body.style.backgroundImage = 'url(' + imageUrl + ')'; // For ::before to inherit
+            document.body.style.backgroundImage = 'url(' + imageUrl + ')';
+            document.body.style.backgroundSize = 'cover';
+            document.body.style.backgroundPosition = 'center center';
+            document.body.style.backgroundAttachment = 'fixed'; // Or 'scroll' if 'fixed' is problematic
+
             document.body.classList.add('with-daily-background');
             // Add bg-loaded class after a tiny delay to ensure CSS transition applies
             requestAnimationFrame(function() {
@@ -141,6 +145,11 @@ function setupDailyBackgroundImage() {
             console.error('Error loading background image:', imageUrl);
             document.body.classList.remove('with-daily-background');
             document.body.classList.remove('bg-loaded');
+            // Optionally, clear the direct styles too
+            document.body.style.backgroundImage = '';
+            document.body.style.backgroundSize = '';
+            document.body.style.backgroundPosition = '';
+            document.body.style.backgroundAttachment = '';
         };
         img.src = imageUrl;
     }
