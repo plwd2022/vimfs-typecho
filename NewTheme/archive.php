@@ -66,10 +66,19 @@
                             <header class="item-header">
                                 <h2 class="item-title"><a href="<?php $this->permalink() ?>" accesskey="3"><?php $this->title() ?></a></h2>
                                 <div class="item-meta">
-                                    <span><?php echo _t('发布于'); ?> <?php $this->date('Y-m-d'); ?></span>
+                                    <span>
+                                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-date"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                        <?php echo _t('发布于'); ?> <?php $this->date('Y-m-d'); ?>
+                                    </span>
                                     <?php if ($this->is('post')): // Only show author and category for actual posts, not all archive types ?>
-                                    | <span><?php echo _t('作者'); ?> <?php $this->author(); ?></span>
-                                    | <span><?php echo _t('分类于'); ?> <?php $this->category(','); ?></span>
+                                    | <span>
+                                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-author"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                                        <?php echo _t('作者'); ?> <?php $this->author(); ?>
+                                    </span>
+                                    | <span>
+                                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-category"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                                        <?php echo _t('分类于'); ?> <?php $this->category(','); ?>
+                                    </span>
                                     <?php endif; ?>
                                 </div>
                             </header>

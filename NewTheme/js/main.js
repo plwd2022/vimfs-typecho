@@ -88,6 +88,59 @@ function setupHotkeyModal() {
     }
 } // end of setupHotkeyModal()
 
+function setupDailyBackgroundImage() {
+    const BING_API_URL = 'https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN';
+    const CACHE_KEY_IMAGE_URL = 'daily_bing_image_url';
+    const CACHE_KEY_DATE = 'daily_bing_image_date';
+    const today = new Date().toISOString().split('T')[0]; // Get YYYY-MM-DD
+
+    const cachedImageUrl = localStorage.getItem(CACHE_KEY_IMAGE_URL);
+    const cachedDate = localStorage.getItem(CACHE_KEY_DATE);
+
+    if (cachedImageUrl && cachedDate === today) {
+        applyBackground(cachedImageUrl);
+    } else {
+        fetch(BING_API_URL)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok for Bing API');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data && data.images && data.images.length > 0) {
+                    const imageUrl = 'https://www.bing.com' + data.images[0].url;
+                    localStorage.setItem(CACHE_KEY_IMAGE_URL, imageUrl);
+                    localStorage.setItem(CACHE_KEY_DATE, today);
+                    applyBackground(imageUrl);
+                } else {
+                    throw new Error('No image data found in Bing API response');
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching or processing Bing daily image:', error);
+                // Optional: clear cache if fetch fails, or implement fallback
+                // localStorage.removeItem(CACHE_KEY_IMAGE_URL);
+                // localStorage.removeItem(CACHE_KEY_DATE);
+            });
+    }
+
+    function applyBackground(imageUrl) {
+        const img = new Image();
+        img.onload = function() {
+            document.body.style.backgroundImage = 'url(' + imageUrl + ')';
+            // Optional: Apply other background styles here if not handled by CSS
+            document.body.style.backgroundSize = 'cover';
+            document.body.style.backgroundPosition = 'center center';
+            document.body.style.backgroundAttachment = 'fixed'; // Fixed can be performance intensive
+        };
+        img.onerror = function() {
+            console.error('Error loading background image:', imageUrl);
+        };
+        img.src = imageUrl;
+    }
+}
+
 function setupMobileMenu() {
     var menuToggle = document.getElementById('mobile-menu-toggle');
     var mainNav = document.getElementById('main-navigation');
@@ -121,8 +174,10 @@ if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function() {
         setupHotkeyModal();
         setupMobileMenu(); 
+        setupDailyBackgroundImage(); // Added
     });
-} else {
+} else { // Already loaded
     setupHotkeyModal();
     setupMobileMenu(); 
+    setupDailyBackgroundImage(); // Added
 }
