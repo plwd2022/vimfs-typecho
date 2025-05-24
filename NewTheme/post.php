@@ -1,33 +1,34 @@
+<?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
 <?php $this->need('header.php'); ?>
 <div id="main" role="main">
   <div class="post">
-        <article class="post-entry">
+        <article class="post-entry" itemscope itemtype="http://schema.org/BlogPosting">
             <header class="entry-header">
-                <h1 class="entry-title"><?php $this->title(); ?></h1>
+                <h1 class="entry-title" itemprop="name headline"><a itemprop="url" href="<?php $this->permalink(); ?>"><?php $this->title(); ?></a></h1>
                 <div class="entry-meta">
-                    <span>作者：<?php $this->author(); ?></span> | 
-                    <span>日期：<?php $this->date('Y-m-d'); ?></span> | 
-                    <span>分类：<?php $this->category(','); ?></span>
+                    <span itemprop="author" itemscope itemtype="http://schema.org/Person"><?php echo _t('作者：'); ?><a itemprop="name" href="<?php $this->author->permalink(); ?>" rel="author"><?php $this->author(); ?></a></span> | 
+                    <span><?php echo _t('日期：'); ?><time datetime="<?php $this->date('c'); ?>" itemprop="datePublished"><?php $this->date('Y-m-d'); ?></time></span> | 
+                    <span><?php echo _t('分类：'); ?><?php $this->category(','); ?></span>
                 </div>
             </header>
             
             <?php if ($this->fields->post_thumbnail): ?>
                 <div class="single-post-thumbnail">
-                    <img src="<?php $this->fields->post_thumbnail(); ?>" alt="<?php $this->title(); ?> 的缩略图" />
+                    <img src="<?php $this->fields->post_thumbnail(); ?>" alt="<?php echo sprintf(_t('%s 的缩略图'), $this->title()); ?>" itemprop="image" />
                 </div>
             <?php endif; ?>
             
-            <div class="entry-content">
+            <div class="entry-content" itemprop="articleBody">
                 <?php $this->content(); ?>
             </div>
             
             <footer class="entry-footer">
                 <div class="post-tags">
-                    标签：<?php $this->tags(', ', true, '无标签'); ?>
+                    <?php echo _t('标签：'); ?><span itemprop="keywords"><?php $this->tags(', ', true, _t('无标签')); ?></span>
                 </div>
                 <nav class="post-navigation">
-                    <div class="nav-previous">上一篇：<?php $this->thePrev('%s','没有了'); ?></div>
-                    <div class="nav-next">下一篇：<?php $this->theNext('%s','沒有了'); ?></div>
+                    <div class="nav-previous"><?php echo _t('上一篇：'); ?><?php $this->thePrev('%s',_t('没有了')); ?></div>
+                    <div class="nav-next"><?php echo _t('下一篇：'); ?><?php $this->theNext('%s',_t('没有了')); ?></div>
                 </nav>
             </footer>
         </article>
@@ -41,7 +42,7 @@
         if ($relatedPosts->have()):
         ?>
         <section class="related-posts">
-            <h2 class="section-title" accesskey="2">相关文章</h2>
+            <h2 class="section-title" accesskey="2"><?php echo _t('相关文章'); ?></h2>
             <ul class="widget-list">
                 <?php while ($relatedPosts->next()): ?>
                 <li><a href="<?php $relatedPosts->permalink(); ?>"><?php $relatedPosts->title(); ?></a><span><?php $relatedPosts->date('Y-m-d'); ?></span></li>
